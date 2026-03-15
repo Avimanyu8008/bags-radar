@@ -5,12 +5,14 @@ import {
   type LatencyPoint,
   type ReportCounts,
   type ReportType,
-  type ServiceResult
+  type ServiceResult,
+  type ServiceStatus
 } from "@/data/services";
 
 const reportFallbackStore: { type: ReportType; createdAt: string }[] = [];
 let latestResults: ServiceResult[] = DEMO_SERVICE_RESULTS;
 let latencyHistory: LatencyPoint[] = DEMO_LATENCY_HISTORY;
+const lastKnownServiceStates = new Map<string, ServiceStatus>();
 
 export function saveServiceSnapshot(results: ServiceResult[]) {
   latestResults = results;
@@ -34,6 +36,14 @@ export function getLatestResults() {
 
 export function getLatencyHistory() {
   return latencyHistory;
+}
+
+export function getPreviousServiceStatus(serviceId: string) {
+  return lastKnownServiceStates.get(serviceId);
+}
+
+export function setPreviousServiceStatus(serviceId: string, status: ServiceStatus) {
+  lastKnownServiceStates.set(serviceId, status);
 }
 
 export function addFallbackReport(type: ReportType) {

@@ -1,6 +1,7 @@
 export type ServiceName = "Bags Website" | "Solana RPC" | "Bags API";
 export type ServiceStatus = "UP" | "SLOW" | "DOWN";
 export type ReportType = "wallet" | "trading" | "token";
+export type IncidentStatus = "down" | "recovered";
 
 export interface ServiceDefinition {
   id: string;
@@ -26,6 +27,14 @@ export interface ReportCounts {
   wallet: number;
   trading: number;
   token: number;
+}
+
+export interface IncidentRecord {
+  id: string;
+  service: string;
+  status: IncidentStatus;
+  latency: string;
+  created_at: string;
 }
 
 export const SERVICES: ServiceDefinition[] = [

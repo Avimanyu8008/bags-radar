@@ -130,12 +130,20 @@ export function DashboardClient() {
                 />
                 <span>{source === "live" ? "Live checks" : "Demo mode"}</span>
               </div>
-              <Link
-                href="/speedtest"
-                className="inline-flex rounded-full border border-gray-700 px-4 py-2 text-sm font-medium transition hover:border-gray-500 hover:bg-gray-800"
-              >
-                Open speed test
-              </Link>
+              <div className="flex flex-wrap gap-3 md:justify-end">
+                <Link
+                  href="/speedtest"
+                  className="inline-flex rounded-full border border-gray-700 px-4 py-2 text-sm font-medium transition hover:border-gray-500 hover:bg-gray-800"
+                >
+                  Open speed test
+                </Link>
+                <Link
+                  href="/incidents"
+                  className="inline-flex rounded-full border border-gray-700 px-4 py-2 text-sm font-medium transition hover:border-gray-500 hover:bg-gray-800"
+                >
+                  View incidents
+                </Link>
+              </div>
             </div>
           </div>
         </header>
