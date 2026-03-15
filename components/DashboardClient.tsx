@@ -34,6 +34,10 @@ export function DashboardClient() {
   const [counts, setCounts] = useState<ReportCounts>(DEMO_REPORT_COUNTS);
   const [checkedAt, setCheckedAt] = useState<string>(new Date().toISOString());
   const [source, setSource] = useState<DashboardPayload["source"]>("demo");
+  const discordAlertsEnabled =
+    process.env.NEXT_PUBLIC_DISCORD_ENABLED === "true";
+
+  console.log("DISCORD ENV:", process.env.NEXT_PUBLIC_DISCORD_ENABLED);
 
   useEffect(() => {
     let mounted = true;
@@ -122,13 +126,24 @@ export function DashboardClient() {
               <span>
                 Average latency: {averageLatency !== null ? `${averageLatency}ms` : "N/A"}
               </span>
-              <div className="flex items-center gap-3">
+              <div className="flex flex-wrap items-center gap-3 md:justify-end">
+                <div className="flex items-center gap-3">
+                  <span
+                    className={`h-2.5 w-2.5 rounded-full ${
+                      source === "live" ? "bg-green-400" : "bg-yellow-400"
+                    }`}
+                  />
+                  <span>{source === "live" ? "Live checks" : "Demo mode"}</span>
+                </div>
                 <span
-                  className={`h-2.5 w-2.5 rounded-full ${
-                    source === "live" ? "bg-green-400" : "bg-yellow-400"
+                  className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] ${
+                    discordAlertsEnabled
+                      ? "bg-green-400/10 text-green-400 ring-1 ring-green-400/20"
+                      : "bg-yellow-400/10 text-yellow-400 ring-1 ring-yellow-400/20"
                   }`}
-                />
-                <span>{source === "live" ? "Live checks" : "Demo mode"}</span>
+                >
+                  Discord alerts: {discordAlertsEnabled ? "ACTIVE" : "NOT CONFIGURED"}
+                </span>
               </div>
               <div className="flex flex-wrap gap-3 md:justify-end">
                 <Link
