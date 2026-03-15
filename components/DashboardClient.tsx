@@ -142,7 +142,7 @@ export function DashboardClient() {
                       : "bg-yellow-400/10 text-yellow-400 ring-1 ring-yellow-400/20"
                   }`}
                 >
-                  Discord alerts: {discordAlertsEnabled ? "ACTIVE" : "NOT CONFIGURED"}
+                  DISCORD ALERTS: {discordAlertsEnabled ? "ACTIVE" : "NOT CONFIGURED"}
                 </span>
               </div>
               <div className="flex flex-wrap gap-3 md:justify-end">
