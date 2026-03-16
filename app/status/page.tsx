@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import type { ServiceResult, ServiceStatus } from "@/data/services";
+import type { IncidentRecord, ServiceResult, ServiceStatus } from "@/data/services";
 import { DEMO_SERVICE_RESULTS } from "@/data/services";
+import { getSupabaseClient } from "@/lib/supabaseClient";
 
 interface CheckServicesPayload {
   services: ServiceResult[];
@@ -28,26 +29,48 @@ const uptimeLabels: Record<ServiceStatus, string> = {
   DOWN: "95.0%"
 };
 
+function getIncidentTitle(incident: IncidentRecord) {
+  if (incident.status === "down") {
+    return `${incident.service} outage reported`;
+  }
+
+  return `${incident.service} recovered`;
+}
+
 export default function StatusPage() {
   const [services, setServices] = useState<ServiceResult[]>(DEMO_SERVICE_RESULTS);
   const [checkedAt, setCheckedAt] = useState<string>(new Date().toISOString());
+  const [incidents, setIncidents] = useState<IncidentRecord[]>([]);
 
   useEffect(() => {
     let mounted = true;
 
-    async function loadStatus() {
+    async function loadStatusPage() {
       try {
-        const response = await fetch("/api/check-services", {
-          cache: "no-store"
-        });
+        const [statusResponse, incidentsResponse] = await Promise.all([
+          fetch("/api/check-services", {
+            cache: "no-store"
+          }),
+          getSupabaseClient()
+            ?.from("incidents")
+            .select("id, service, status, latency, created_at")
+            .order("created_at", { ascending: false })
+            .limit(10)
+        ]);
 
-        if (!response.ok || !mounted) {
+        if (!mounted) {
           return;
         }
 
-        const payload = (await response.json()) as CheckServicesPayload;
-        setServices(payload.services);
-        setCheckedAt(payload.checkedAt);
+        if (statusResponse.ok) {
+          const payload = (await statusResponse.json()) as CheckServicesPayload;
+          setServices(payload.services);
+          setCheckedAt(payload.checkedAt);
+        }
+
+        if (incidentsResponse && !incidentsResponse.error && incidentsResponse.data) {
+          setIncidents(incidentsResponse.data as IncidentRecord[]);
+        }
       } catch {
         if (!mounted) {
           return;
@@ -55,8 +78,8 @@ export default function StatusPage() {
       }
     }
 
-    loadStatus();
-    const interval = window.setInterval(loadStatus, 15_000);
+    loadStatusPage();
+    const interval = window.setInterval(loadStatusPage, 15_000);
 
     return () => {
       mounted = false;
@@ -173,6 +196,45 @@ export default function StatusPage() {
               </div>
             </article>
           ))}
+        </section>
+
+        <section className="panel p-6">
+          <div className="flex flex-col gap-5">
+            <div>
+              <p className="text-sm uppercase tracking-[0.3em] text-gray-500">
+                Timeline
+              </p>
+              <h2 className="mt-2 text-2xl font-semibold text-white">Status History</h2>
+            </div>
+
+            <div className="space-y-4">
+              {incidents.length === 0 ? (
+                <div className="rounded-2xl border border-gray-800 bg-gray-950 px-4 py-5 text-sm text-gray-400">
+                  No recent incidents yet.
+                </div>
+              ) : (
+                incidents.map((incident) => (
+                  <div
+                    key={incident.id}
+                    className="rounded-2xl border border-gray-800 bg-gray-950 px-4 py-4"
+                  >
+                    <p className="text-base font-medium text-white">
+                      {getIncidentTitle(incident)}
+                    </p>
+                    <p className="mt-1 text-sm text-gray-300">
+                      Service affected: {incident.service}
+                    </p>
+                    <p className="mt-2 text-sm text-gray-500">
+                      {new Date(incident.created_at).toLocaleString([], {
+                        hour: "2-digit",
+                        minute: "2-digit"
+                      })}
+                    </p>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
         </section>
       </div>
     </main>
