@@ -41,6 +41,13 @@ export default function HomePage() {
           <p className="text-base text-gray-300 md:text-lg">
             Real-time monitoring platform for the Bags ecosystem.
           </p>
+          <Link
+            href="/status"
+            className="inline-flex items-center gap-2 rounded-full bg-green-400/10 px-4 py-2 text-sm font-semibold text-green-300 ring-1 ring-green-400/20 transition hover:bg-green-400/15 hover:text-green-200"
+          >
+            <span>\uD83D\uDFE2</span>
+            <span>All Systems Operational</span>
+          </Link>
         </header>
 
         <section className="grid w-full gap-5 md:grid-cols-2">
