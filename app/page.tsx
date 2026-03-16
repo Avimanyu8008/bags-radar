@@ -1,4 +1,4 @@
-"use client";
+ï»¿"use client";
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -90,7 +90,7 @@ export default function HomePage() {
                 <span className="relative h-3 w-3 rounded-full bg-emerald-400" />
               </span>
               <span>All systems operational</span>
-              <span className="text-white/60">•</span>
+              <span className="text-white/60">|</span>
               <span className="text-white/70">
                 Last checked {lastChecked.toLocaleTimeString([], {
                   hour: "2-digit",
