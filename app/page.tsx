@@ -70,7 +70,7 @@ export default function HomePage() {
 
               <div className="mt-8">
                 <Link
-                  href={feature.href}
+                  href={feature.href as any}
                   className="inline-flex rounded-full border border-gray-700 px-5 py-2.5 text-sm font-semibold transition hover:border-gray-500 hover:bg-gray-800"
                 >
                   {feature.cta}
