@@ -96,9 +96,13 @@ export default function HomePage() {
             <p className="text-sm uppercase tracking-[0.38em] text-emerald-300/90">
               Bags Ecosystem Platform
             </p>
-            <h1 className="max-w-4xl text-5xl font-semibold tracking-tight text-white md:text-7xl">
-              BagsRadar
-            </h1>
+            <div className="relative">
+              <div className="absolute left-1/2 top-1/2 h-32 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/18 blur-3xl" />
+              <div className="absolute left-1/2 top-1/2 h-24 w-56 -translate-x-1/2 -translate-y-1/2 rounded-full bg-teal-300/12 blur-2xl" />
+              <h1 className="relative max-w-4xl text-5xl font-semibold tracking-tight text-white md:text-7xl">
+                BagsRadar
+              </h1>
+            </div>
             <p className="max-w-2xl text-base leading-7 text-slate-300 md:text-lg">
               Real-time monitoring platform for the Bags ecosystem.
             </p>
@@ -107,8 +111,8 @@ export default function HomePage() {
               className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/10 px-5 py-3 text-sm font-medium text-white shadow-[0_12px_32px_rgba(15,23,42,0.22)] backdrop-blur-xl transition hover:bg-white/14"
             >
               <span className="relative flex h-3 w-3 items-center justify-center">
-                <span className="absolute inline-flex h-3 w-3 animate-ping rounded-full bg-emerald-400/70" />
-                <span className="relative h-3 w-3 rounded-full bg-emerald-400" />
+                <span className="absolute inline-flex h-3 w-3 rounded-full bg-emerald-400/35 animate-[statusDot_2s_ease-in-out_infinite]" />
+                <span className="relative h-3 w-3 rounded-full bg-emerald-400 animate-[statusDot_2s_ease-in-out_infinite]" />
               </span>
               <span>All systems operational</span>
               <span className="text-white/60">|</span>
@@ -193,9 +197,10 @@ export default function HomePage() {
             {features.map((feature) => (
               <article
                 key={feature.title}
-                className="group relative overflow-hidden rounded-[28px] border border-white/12 bg-white/8 p-6 shadow-[0_20px_60px_rgba(2,6,23,0.28)] backdrop-blur-xl transition duration-300 hover:-translate-y-1.5 hover:border-white/18 hover:bg-white/10"
+                className="group relative overflow-hidden rounded-[28px] border border-white/12 bg-white/8 p-6 shadow-[0_20px_60px_rgba(2,6,23,0.28)] backdrop-blur-xl transition-[transform,filter,box-shadow,border-color,background-color] duration-300 hover:-translate-y-1.5 hover:border-cyan-300/28 hover:bg-white/10 hover:brightness-110 hover:shadow-[0_24px_70px_rgba(34,211,238,0.14)]"
               >
                 <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.1),transparent_45%,transparent)] opacity-70" />
+                <div className="absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100 bg-[radial-gradient(circle_at_top_left,rgba(45,212,191,0.12),transparent_40%)]" />
                 <div className="relative flex min-h-64 flex-col justify-between">
                   <div>
                     <p className="text-sm uppercase tracking-[0.3em] text-white/45">
@@ -279,6 +284,19 @@ export default function HomePage() {
           to {
             opacity: 1;
             transform: translateY(0);
+          }
+        }
+
+        @keyframes statusDot {
+          0%,
+          100% {
+            transform: scale(1);
+            opacity: 0.92;
+          }
+
+          50% {
+            transform: scale(1.1);
+            opacity: 1;
           }
         }
       `}</style>
