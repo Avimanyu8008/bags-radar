@@ -4,7 +4,7 @@ const features = [
   {
     title: "Live Monitoring Dashboard",
     description: "Real-time latency monitoring of Bags services",
-    href: "/",
+    href: "/dashboard",
     cta: "Open Dashboard"
   },
   {
