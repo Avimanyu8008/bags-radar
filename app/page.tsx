@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const features = [
   {
@@ -27,59 +30,125 @@ const features = [
   }
 ];
 
+const navLinks = [
+  { label: "Dashboard", href: "/dashboard" },
+  { label: "Status", href: "/status" },
+  { label: "Incidents", href: "/incidents" },
+  { label: "Speed Test", href: "/speedtest" }
+];
+
 export default function HomePage() {
+  const [lastChecked, setLastChecked] = useState(() => new Date());
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setLastChecked(new Date());
+    }, 1_000);
+
+    return () => window.clearInterval(interval);
+  }, []);
+
   return (
-    <main className="min-h-screen bg-gray-950 px-4 py-8 text-white md:px-8">
-      <div className="mx-auto flex min-h-[calc(100vh-4rem)] max-w-6xl flex-col items-center justify-center gap-10">
-        <header className="flex max-w-3xl flex-col items-center gap-4 text-center">
-          <p className="text-sm uppercase tracking-[0.35em] text-green-400">
-            Bags Ecosystem Platform
-          </p>
-          <h1 className="text-5xl font-semibold tracking-tight md:text-6xl">
-            BagsRadar
-          </h1>
-          <p className="text-base text-gray-300 md:text-lg">
-            Real-time monitoring platform for the Bags ecosystem.
-          </p>
-          <Link
-            href="/status"
-            className="inline-flex items-center gap-2 rounded-full bg-green-400/10 px-4 py-2 text-sm font-semibold text-green-300 ring-1 ring-green-400/20 transition hover:bg-green-400/15 hover:text-green-200"
-          >
-            <span>\uD83D\uDFE2</span>
-            <span>All Systems Operational</span>
-          </Link>
-        </header>
-
-        <section className="grid w-full gap-5 md:grid-cols-2">
-          {features.map((feature) => (
-            <article
-              key={feature.title}
-              className="panel flex min-h-64 flex-col justify-between p-6 transition duration-300 hover:-translate-y-1 hover:border-gray-700 hover:bg-gray-900"
-            >
-              <div>
-                <p className="text-sm uppercase tracking-[0.3em] text-gray-500">
-                  Feature
-                </p>
-                <h2 className="mt-3 text-2xl font-semibold text-white">
-                  {feature.title}
-                </h2>
-                <p className="mt-3 max-w-md text-sm leading-6 text-gray-300">
-                  {feature.description}
-                </p>
-              </div>
-
-              <div className="mt-8">
+    <main className="min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top,rgba(34,197,94,0.18),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(56,189,248,0.12),transparent_25%),linear-gradient(180deg,#050816_0%,#0b1020_100%)] px-4 py-6 text-white md:px-8">
+      <div className="mx-auto flex min-h-[calc(100vh-3rem)] max-w-6xl flex-col gap-10">
+        <nav className="sticky top-4 z-10 rounded-full border border-white/10 bg-white/8 px-4 py-3 shadow-[0_12px_40px_rgba(0,0,0,0.25)] backdrop-blur-xl md:px-6">
+          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+            <Link href="/" className="text-sm font-semibold tracking-[0.28em] text-white/90">
+              BAGSRADAR
+            </Link>
+            <div className="flex flex-wrap items-center gap-2 text-sm text-white/70">
+              {navLinks.map((link) => (
                 <Link
-                  href={feature.href as any}
-                  className="inline-flex rounded-full border border-gray-700 px-5 py-2.5 text-sm font-semibold transition hover:border-gray-500 hover:bg-gray-800"
+                  key={link.href}
+                  href={link.href as any}
+                  className="rounded-full border border-transparent px-3 py-1.5 transition hover:border-white/10 hover:bg-white/8 hover:text-white"
                 >
-                  {feature.cta}
+                  {link.label}
                 </Link>
-              </div>
-            </article>
-          ))}
+              ))}
+            </div>
+          </div>
+        </nav>
+
+        <section className="flex flex-1 flex-col items-center justify-center gap-10">
+          <div className="flex max-w-4xl animate-[fadeIn_700ms_ease-out] flex-col items-center gap-5 text-center">
+            <p className="text-sm uppercase tracking-[0.38em] text-emerald-300/90">
+              Bags Ecosystem Platform
+            </p>
+            <h1 className="max-w-4xl text-5xl font-semibold tracking-tight text-white md:text-7xl">
+              BagsRadar
+            </h1>
+            <p className="max-w-2xl text-base leading-7 text-slate-300 md:text-lg">
+              Real-time monitoring platform for the Bags ecosystem.
+            </p>
+            <Link
+              href="/status"
+              className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/10 px-5 py-3 text-sm font-medium text-white shadow-[0_12px_32px_rgba(15,23,42,0.22)] backdrop-blur-xl transition hover:bg-white/14"
+            >
+              <span className="relative flex h-3 w-3 items-center justify-center">
+                <span className="absolute inline-flex h-3 w-3 animate-ping rounded-full bg-emerald-400/70" />
+                <span className="relative h-3 w-3 rounded-full bg-emerald-400" />
+              </span>
+              <span>All systems operational</span>
+              <span className="text-white/60">•</span>
+              <span className="text-white/70">
+                Last checked {lastChecked.toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  second: "2-digit"
+                })}
+              </span>
+            </Link>
+          </div>
+
+          <section className="grid w-full gap-5 md:grid-cols-2">
+            {features.map((feature) => (
+              <article
+                key={feature.title}
+                className="group relative overflow-hidden rounded-[28px] border border-white/12 bg-white/8 p-6 shadow-[0_20px_60px_rgba(2,6,23,0.28)] backdrop-blur-xl transition duration-300 hover:-translate-y-1.5 hover:border-white/18 hover:bg-white/10"
+              >
+                <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.1),transparent_45%,transparent)] opacity-70" />
+                <div className="relative flex min-h-64 flex-col justify-between">
+                  <div>
+                    <p className="text-sm uppercase tracking-[0.3em] text-white/45">
+                      Feature
+                    </p>
+                    <h2 className="mt-4 text-2xl font-semibold text-white">
+                      {feature.title}
+                    </h2>
+                    <p className="mt-3 max-w-md text-sm leading-6 text-slate-300">
+                      {feature.description}
+                    </p>
+                  </div>
+
+                  <div className="mt-8">
+                    <Link
+                      href={feature.href as any}
+                      className="inline-flex items-center rounded-full border border-white/12 bg-black/10 px-5 py-2.5 text-sm font-semibold text-white transition hover:border-white/20 hover:bg-white/10"
+                    >
+                      {feature.cta}
+                    </Link>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </section>
         </section>
       </div>
+
+      <style jsx global>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(12px);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </main>
   );
 }
