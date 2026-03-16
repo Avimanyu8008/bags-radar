@@ -22,6 +22,12 @@ const publicStatusStyles: Record<ServiceStatus, string> = {
   DOWN: "bg-red-400/10 text-red-400 ring-red-400/20"
 };
 
+const uptimeLabels: Record<ServiceStatus, string> = {
+  UP: "99.9%",
+  SLOW: "99.0%",
+  DOWN: "95.0%"
+};
+
 export default function StatusPage() {
   const [services, setServices] = useState<ServiceResult[]>(DEMO_SERVICE_RESULTS);
   const [checkedAt, setCheckedAt] = useState<string>(new Date().toISOString());
@@ -146,6 +152,12 @@ export default function StatusPage() {
                   <p className="text-sm text-gray-400">Latency</p>
                   <p className="mt-2 text-3xl font-semibold text-white">
                     {service.latency !== null ? `${service.latency}ms` : "Timed out"}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-400">Uptime</p>
+                  <p className="mt-1 text-sm text-gray-300">
+                    {uptimeLabels[service.status]}
                   </p>
                 </div>
                 <div>
