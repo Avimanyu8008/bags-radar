@@ -43,6 +43,21 @@ const previewServices = [
   { name: "Bags API", status: "Operational", latency: "164ms", tone: "bg-emerald-400" }
 ];
 
+const trustItems = [
+  {
+    title: "No Login Required",
+    description: "Use BagsRadar instantly without creating an account."
+  },
+  {
+    title: "No Personal Data Stored",
+    description: "We do not collect or store any personal user data."
+  },
+  {
+    title: "Public Infrastructure Monitoring",
+    description: "All checks monitor publicly available services only."
+  }
+];
+
 export default function HomePage() {
   const [lastChecked, setLastChecked] = useState(() => new Date());
 
@@ -206,7 +221,52 @@ export default function HomePage() {
               </article>
             ))}
           </section>
+
+          <section className="w-full rounded-[28px] border border-white/12 bg-white/8 p-6 shadow-[0_20px_60px_rgba(2,6,23,0.24)] backdrop-blur-xl md:p-8">
+            <div className="flex flex-col gap-6">
+              <div>
+                <p className="text-sm uppercase tracking-[0.3em] text-white/45">
+                  Privacy & Transparency
+                </p>
+              </div>
+              <div className="grid gap-4 md:grid-cols-3">
+                {trustItems.map((item) => (
+                  <div
+                    key={item.title}
+                    className="rounded-2xl border border-white/10 bg-black/10 p-5 text-left"
+                  >
+                    <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                    <p className="mt-3 text-sm leading-6 text-slate-300">
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
         </section>
+
+        <footer className="mt-auto border-t border-white/10 py-6">
+          <div className="flex flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left">
+            <div>
+              <p className="text-base font-semibold text-white">BagsRadar</p>
+              <p className="mt-1 text-sm text-slate-300">
+                Real-time monitoring for the Bags ecosystem.
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-white/70">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href as any}
+                  className="transition hover:text-white"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </footer>
       </div>
 
       <style jsx global>{`
