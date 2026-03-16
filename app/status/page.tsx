@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { ServiceResult, ServiceStatus } from "@/data/services";
 import { DEMO_SERVICE_RESULTS } from "@/data/services";
 
@@ -58,6 +58,30 @@ export default function StatusPage() {
     };
   }, []);
 
+  const globalStatus = useMemo(() => {
+    if (services.some((service) => service.status === "DOWN")) {
+      return {
+        icon: "\uD83D\uDD34",
+        label: "Major Outage",
+        classes: "border-red-400/30 bg-red-400/10 text-red-300"
+      };
+    }
+
+    if (services.some((service) => service.status === "SLOW")) {
+      return {
+        icon: "\uD83D\uDFE1",
+        label: "Degraded Performance",
+        classes: "border-yellow-400/30 bg-yellow-400/10 text-yellow-200"
+      };
+    }
+
+    return {
+      icon: "\uD83D\uDFE2",
+      label: "All Systems Operational",
+      classes: "border-green-400/30 bg-green-400/10 text-green-200"
+    };
+  }, [services]);
+
   return (
     <main className="min-h-screen bg-gray-950 px-4 py-8 text-white md:px-8">
       <div className="mx-auto flex max-w-6xl flex-col gap-8">
@@ -70,6 +94,14 @@ export default function StatusPage() {
             <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
               Bags Ecosystem Status
             </h1>
+            <div className="flex justify-center">
+              <div
+                className={`inline-flex items-center justify-center rounded-2xl border px-6 py-4 text-center text-lg font-semibold shadow-glow ${globalStatus.classes}`}
+              >
+                <span className="mr-3 text-2xl">{globalStatus.icon}</span>
+                <span>{globalStatus.label}</span>
+              </div>
+            </div>
             <p className="max-w-2xl text-base text-gray-300 md:text-lg">
               Real-time service health for the Bags ecosystem.
             </p>
