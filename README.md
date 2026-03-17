@@ -1,4 +1,4 @@
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/42657eb4-5c82-4628-b6d6-aed2cbc6e692" /># BagsRadar
+# BagsRadar
 
 Real-time monitoring platform for the Bags ecosystem.
 
