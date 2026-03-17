@@ -141,14 +141,29 @@ export default function HomePage() {
           </div>
         </nav>
 
-        <section className="relative flex flex-1 flex-col items-center justify-center gap-10">
-          <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[24rem] overflow-hidden sm:h-[28rem]">
+        <section className="relative flex flex-1 flex-col items-center justify-center gap-10 overflow-hidden rounded-[32px]">
+          <div className="pointer-events-none absolute inset-0 -z-20">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute top-0 left-0 h-full w-full object-cover"
+            >
+              <source
+                src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260306_074215_04640ca7-042c-45d6-bb56-58b1e8a42489.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-black/40" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[24rem] overflow-hidden sm:h-[28rem]">
             <div className="absolute left-1/2 top-10 h-60 w-[20rem] -translate-x-[58%] rounded-full bg-cyan-400/10 blur-3xl animate-[auroraFloat_20s_ease-in-out_infinite] sm:h-72 sm:w-[34rem]" />
             <div className="absolute right-[4%] top-24 h-52 w-[16rem] rounded-full bg-teal-300/8 blur-3xl animate-[auroraDrift_18s_ease-in-out_infinite] sm:right-[8%] sm:h-64 sm:w-[26rem]" />
             <div className="absolute left-[8%] top-28 h-44 w-[14rem] rounded-full bg-sky-300/7 blur-3xl animate-[auroraDrift_24s_ease-in-out_infinite_reverse] sm:left-[12%] sm:h-56 sm:w-[22rem]" />
           </div>
 
-          <div className="relative flex max-w-4xl animate-[fadeIn_700ms_ease-out] flex-col items-center gap-5 px-4 text-center">
+          <div className="relative z-10 flex max-w-4xl animate-[fadeIn_700ms_ease-out] flex-col items-center gap-5 px-4 text-center">
             <p className="text-xs uppercase tracking-[0.34em] text-emerald-300/90 sm:text-sm sm:tracking-[0.38em]">
               Bags Ecosystem Platform
             </p>
@@ -182,7 +197,7 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <section className="w-full max-w-5xl rounded-[28px] border border-white/12 bg-white/8 px-4 py-5 shadow-[0_24px_80px_rgba(2,6,23,0.28)] backdrop-blur-xl sm:rounded-[32px] sm:p-6 md:p-8">
+          <section className="relative z-10 w-full max-w-5xl rounded-[28px] border border-white/12 bg-white/8 px-4 py-5 shadow-[0_24px_80px_rgba(2,6,23,0.28)] backdrop-blur-xl sm:rounded-[32px] sm:p-6 md:p-8">
             <div className="flex flex-col gap-6">
               <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                 <div>
@@ -259,7 +274,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          <section className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2">
+          <section className="relative z-10 grid w-full grid-cols-1 gap-5 sm:grid-cols-2">
             {features.map((feature) => (
               <article
                 key={feature.title}
@@ -293,7 +308,7 @@ export default function HomePage() {
             ))}
           </section>
 
-          <section className="w-full rounded-[28px] border border-white/12 bg-white/8 p-6 shadow-[0_20px_60px_rgba(2,6,23,0.24)] backdrop-blur-xl md:p-8">
+          <section className="relative z-10 w-full rounded-[28px] border border-white/12 bg-white/8 p-6 shadow-[0_20px_60px_rgba(2,6,23,0.24)] backdrop-blur-xl md:p-8">
             <div className="flex flex-col gap-6">
               <div className="text-center md:text-left">
                 <p className="text-sm uppercase tracking-[0.3em] text-white/45">
