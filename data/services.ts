@@ -1,4 +1,8 @@
-export type ServiceName = "Bags Website" | "Solana RPC" | "Bags API";
+﻿export type ServiceName =
+  | "Bags Website"
+  | "Solana RPC"
+  | "Bags API"
+  | "aToken Service";
 export type ServiceStatus = "UP" | "SLOW" | "DOWN";
 export type ReportType = "wallet" | "trading" | "token";
 export type IncidentStatus = "down" | "recovered";
@@ -52,6 +56,11 @@ export const SERVICES: ServiceDefinition[] = [
     id: "api",
     name: "Bags API",
     url: "https://bags.fm/api"
+  },
+  {
+    id: "atoken",
+    name: "aToken Service",
+    url: "simulate://atoken-service"
   }
 ];
 
@@ -91,6 +100,14 @@ export const DEMO_SERVICE_RESULTS: ServiceResult[] = [
     status: "UP",
     latency: 164,
     checkedAt: new Date().toISOString()
+  },
+  {
+    id: "atoken",
+    name: "aToken Service",
+    url: "simulate://atoken-service",
+    status: "UP",
+    latency: 142,
+    checkedAt: new Date().toISOString()
   }
 ];
 
@@ -105,7 +122,8 @@ export const DEMO_LATENCY_HISTORY: LatencyPoint[] = Array.from(
       services: {
         website: 110 + (index % 3) * 9,
         rpc: 210 + ((index + 1) % 4) * 18,
-        api: 140 + (index % 5) * 11
+        api: 140 + (index % 5) * 11,
+        atoken: 130 + (index % 4) * 10
       }
     };
   }

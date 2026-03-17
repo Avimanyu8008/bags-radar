@@ -1,4 +1,4 @@
-import { ServiceStatus } from "@/data/services";
+﻿import { ServiceStatus } from "@/data/services";
 
 export interface CheckServiceResult {
   status: ServiceStatus;
@@ -7,10 +7,38 @@ export interface CheckServiceResult {
 
 const TIMEOUT_MS = 4_000;
 
+function simulateServiceCheck(url: string): CheckServiceResult {
+  const baseSeed = url.length + new Date().getUTCMinutes();
+  const latency = 120 + (baseSeed % 4) * 35;
+
+  if (baseSeed % 11 === 0) {
+    return {
+      status: "DOWN",
+      latency: null
+    };
+  }
+
+  if (baseSeed % 5 === 0) {
+    return {
+      status: "SLOW",
+      latency: 260
+    };
+  }
+
+  return {
+    status: latency < 200 ? "UP" : "SLOW",
+    latency
+  };
+}
+
 /**
  * Measures service latency using fetch and Date.now, then maps the result to a dashboard status.
  */
 export async function checkService(url: string): Promise<CheckServiceResult> {
+  if (url.startsWith("simulate://")) {
+    return simulateServiceCheck(url);
+  }
+
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), TIMEOUT_MS);
   const start = Date.now();
