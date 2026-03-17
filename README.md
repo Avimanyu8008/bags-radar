@@ -1,4 +1,4 @@
-# BagsRadar
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/42657eb4-5c82-4628-b6d6-aed2cbc6e692" /># BagsRadar
 
 Real-time monitoring platform for the Bags ecosystem.
 
@@ -108,3 +108,7 @@ Built as part of the Bags Hackathon.
 
 BagsRadar is not just a dashboard —  
 it’s a step toward making the ecosystem more transparent and reliable.runtime verification need to be done once Node is available.
+
+⚡ Built using AI-assisted development (CodeX) for rapid iteration and system design.
+
+
