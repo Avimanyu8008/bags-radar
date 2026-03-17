@@ -120,8 +120,8 @@ export default function HomePage() {
   }, []);
 
   return (
-    <main className="min-h-screen overflow-x-hidden overflow-y-hidden bg-[radial-gradient(circle_at_top,rgba(34,197,94,0.18),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(56,189,248,0.12),transparent_25%),linear-gradient(180deg,#050816_0%,#0b1020_100%)] px-4 py-6 text-white sm:px-6 lg:px-8">
-      <div className="mx-auto flex min-h-[calc(100vh-3rem)] max-w-6xl flex-col gap-10">
+    <main className="min-h-screen overflow-x-hidden bg-[radial-gradient(circle_at_top,rgba(34,197,94,0.18),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(56,189,248,0.12),transparent_25%),linear-gradient(180deg,#050816_0%,#0b1020_100%)] px-4 py-6 text-white sm:px-6 lg:px-8">
+      <div className="mx-auto flex min-h-[calc(100vh-3rem)] max-w-6xl flex-col gap-10 pb-8">
         <nav className="sticky top-4 z-10 rounded-3xl border border-white/10 bg-white/8 px-3 py-3 shadow-[0_12px_40px_rgba(0,0,0,0.25)] backdrop-blur-xl sm:rounded-full sm:px-4 md:px-6">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <Link href="/" className="text-center text-xs font-semibold tracking-[0.28em] text-white/90 sm:text-left sm:text-sm">
@@ -141,7 +141,7 @@ export default function HomePage() {
           </div>
         </nav>
 
-        <section className="relative flex flex-1 flex-col items-center justify-center gap-10 overflow-hidden rounded-[32px]">
+        <section className="relative flex flex-1 flex-col items-center justify-center gap-10 rounded-[32px]">
           <div className="pointer-events-none absolute inset-0 -z-20">
             <video
               autoPlay
@@ -308,7 +308,7 @@ export default function HomePage() {
             ))}
           </section>
 
-          <section className="relative z-10 w-full rounded-[28px] border border-white/12 bg-white/8 p-6 shadow-[0_20px_60px_rgba(2,6,23,0.24)] backdrop-blur-xl md:p-8">
+          <section className="relative z-10 w-full rounded-[28px] border border-white/12 bg-white/8 p-6 pb-8 shadow-[0_20px_60px_rgba(2,6,23,0.24)] backdrop-blur-xl md:p-8 md:pb-8">
             <div className="flex flex-col gap-6">
               <div className="text-center md:text-left">
                 <p className="text-sm uppercase tracking-[0.3em] text-white/45">
