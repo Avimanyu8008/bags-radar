@@ -168,7 +168,7 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                <div className="mt-5 grid gap-4 grid-cols-1 md:grid-cols-3">
+                <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-3">
                   {previewServices.map((service) => (
                     <div
                       key={service.name}
@@ -199,7 +199,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          <section className="grid w-full gap-5 grid-cols-1 sm:grid-cols-2">
+          <section className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2">
             {features.map((feature) => (
               <article
                 key={feature.title}
@@ -240,16 +240,20 @@ export default function HomePage() {
                   Privacy & Transparency
                 </p>
               </div>
-              <div className="grid gap-4 grid-cols-1 md:grid-cols-3">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
                 {trustItems.map((item) => (
                   <div
                     key={item.title}
-                    className="rounded-2xl border border-white/10 bg-black/10 p-5 text-center md:text-left"
+                    className="group relative overflow-hidden rounded-2xl border border-white/12 bg-white/8 p-5 text-center shadow-[0_20px_60px_rgba(2,6,23,0.18)] backdrop-blur-xl transition-[transform,filter,box-shadow,border-color,background-color,opacity] duration-300 hover:-translate-y-1 hover:scale-[1.01] hover:border-cyan-300/28 hover:bg-white/10 hover:brightness-110 hover:shadow-[0_24px_70px_rgba(34,211,238,0.12)] md:text-left"
                   >
-                    <h3 className="text-lg font-semibold text-white">{item.title}</h3>
-                    <p className="mt-3 text-sm leading-6 text-slate-300">
-                      {item.description}
-                    </p>
+                    <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.1),transparent_45%,transparent)] opacity-70" />
+                    <div className="absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100 bg-[radial-gradient(circle_at_top_left,rgba(45,212,191,0.12),transparent_40%)]" />
+                    <div className="relative">
+                      <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                      <p className="mt-3 text-sm leading-6 text-slate-300">
+                        {item.description}
+                      </p>
+                    </div>
                   </div>
                 ))}
               </div>
