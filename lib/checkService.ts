@@ -9,24 +9,24 @@ const TIMEOUT_MS = 4_000;
 
 function simulateServiceCheck(url: string): CheckServiceResult {
   const baseSeed = url.length + new Date().getUTCMinutes();
-  const latency = 120 + (baseSeed % 4) * 35;
+  const latency = 180 + (baseSeed % 5) * 70;
 
-  if (baseSeed % 11 === 0) {
+  if (baseSeed % 17 === 0) {
     return {
       status: "DOWN",
       latency: null
     };
   }
 
-  if (baseSeed % 5 === 0) {
+  if (latency > 800) {
     return {
       status: "SLOW",
-      latency: 260
+      latency
     };
   }
 
   return {
-    status: latency < 200 ? "UP" : "SLOW",
+    status: "UP",
     latency
   };
 }
