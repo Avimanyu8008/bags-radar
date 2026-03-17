@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { DEMO_SERVICE_RESULTS, type ServiceResult } from "@/data/services";
 
 const features = [
   {
@@ -37,12 +38,6 @@ const navLinks = [
   { label: "Speed Test", href: "/speedtest" }
 ];
 
-const previewServices = [
-  { name: "Bags Website", status: "Operational", latency: "128ms", tone: "bg-emerald-400" },
-  { name: "Solana RPC", status: "Degraded", latency: "286ms", tone: "bg-yellow-400" },
-  { name: "Bags API", status: "Operational", latency: "164ms", tone: "bg-emerald-400" }
-];
-
 const trustItems = [
   {
     title: "No Login Required",
@@ -58,15 +53,70 @@ const trustItems = [
   }
 ];
 
+interface CheckServicesPayload {
+  services: ServiceResult[];
+  checkedAt: string;
+  source: "live" | "demo";
+}
+
+function getPreviewTone(status: ServiceResult["status"]) {
+  if (status === "DOWN") {
+    return "bg-red-400";
+  }
+
+  if (status === "SLOW") {
+    return "bg-yellow-400";
+  }
+
+  return "bg-emerald-400";
+}
+
+function getPreviewLabel(status: ServiceResult["status"]) {
+  if (status === "DOWN") {
+    return "Outage";
+  }
+
+  if (status === "SLOW") {
+    return "Degraded";
+  }
+
+  return "Operational";
+}
+
 export default function HomePage() {
-  const [lastChecked, setLastChecked] = useState(() => new Date());
+  const [services, setServices] = useState<ServiceResult[]>(DEMO_SERVICE_RESULTS);
+  const [checkedAt, setCheckedAt] = useState(() => new Date().toISOString());
 
   useEffect(() => {
-    const interval = window.setInterval(() => {
-      setLastChecked(new Date());
-    }, 1_000);
+    let mounted = true;
 
-    return () => window.clearInterval(interval);
+    async function loadPreview() {
+      try {
+        const response = await fetch("/api/check-services", {
+          cache: "no-store"
+        });
+
+        if (!response.ok || !mounted) {
+          return;
+        }
+
+        const payload = (await response.json()) as CheckServicesPayload;
+        setServices(payload.services);
+        setCheckedAt(payload.checkedAt);
+      } catch {
+        if (!mounted) {
+          return;
+        }
+      }
+    }
+
+    loadPreview();
+    const interval = window.setInterval(loadPreview, 15_000);
+
+    return () => {
+      mounted = false;
+      window.clearInterval(interval);
+    };
   }, []);
 
   return (
@@ -123,7 +173,7 @@ export default function HomePage() {
               <span>All systems operational</span>
               <span className="hidden text-white/60 sm:inline">|</span>
               <span className="text-white/70">
-                Last checked {lastChecked.toLocaleTimeString([], {
+                Last checked {new Date(checkedAt).toLocaleTimeString([], {
                   hour: "2-digit",
                   minute: "2-digit",
                   second: "2-digit"
@@ -164,14 +214,22 @@ export default function HomePage() {
                   </div>
                   <div className="text-left text-sm text-slate-300 sm:text-right">
                     <p>Average latency</p>
-                    <p className="mt-1 text-xl font-semibold text-white">193ms</p>
+                    <p className="mt-1 text-xl font-semibold text-white">
+                      {Math.round(
+                        services.reduce(
+                          (total, service) => total + (service.latency ?? 0),
+                          0
+                        ) / services.length
+                      )}
+                      ms
+                    </p>
                   </div>
                 </div>
 
                 <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-3">
-                  {previewServices.map((service) => (
+                  {services.map((service) => (
                     <div
-                      key={service.name}
+                      key={service.id}
                       className="rounded-2xl border border-white/10 bg-white/6 p-4 transition duration-300 hover:-translate-y-1 hover:bg-white/8"
                     >
                       <div className="flex items-start justify-between gap-3">
@@ -184,13 +242,15 @@ export default function HomePage() {
                           </h4>
                         </div>
                         <span className="inline-flex shrink-0 items-center gap-2 rounded-full border border-white/10 bg-black/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/85">
-                          <span className={`h-2.5 w-2.5 rounded-full ${service.tone}`} />
-                          {service.status}
+                          <span className={`h-2.5 w-2.5 rounded-full ${getPreviewTone(service.status)}`} />
+                          {getPreviewLabel(service.status)}
                         </span>
                       </div>
                       <div className="mt-6">
                         <p className="text-sm text-white/45">Latency</p>
-                        <p className="mt-2 text-3xl font-semibold text-white">{service.latency}</p>
+                        <p className="mt-2 text-3xl font-semibold text-white">
+                          {service.latency !== null ? `${service.latency}ms` : "Timed out"}
+                        </p>
                       </div>
                     </div>
                   ))}
