@@ -83,6 +83,18 @@ function getPreviewLabel(status: ServiceResult["status"]) {
   return "Operational";
 }
 
+function XIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-4 w-4 fill-current"
+    >
+      <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.847h-7.406l-5.8-7.584-6.64 7.584H.474l8.6-9.83L0 1.153h7.594l5.243 6.932 6.064-6.932Zm-1.29 19.495h2.04L6.486 3.24H4.298l13.313 17.408Z" />
+    </svg>
+  );
+}
+
 export default function HomePage() {
   const [services, setServices] = useState<ServiceResult[]>(DEMO_SERVICE_RESULTS);
   const [checkedAt, setCheckedAt] = useState(() => new Date().toISOString());
@@ -137,6 +149,15 @@ export default function HomePage() {
                   {link.label}
                 </Link>
               ))}
+              <a
+                href="https://x.com/Bagsradar"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow BagsRadar on X"
+                className="inline-flex items-center justify-center rounded-full border border-transparent px-2.5 py-1.5 text-white/70 transition-colors hover:text-white sm:px-3"
+              >
+                <XIcon />
+              </a>
             </div>
           </div>
         </nav>
@@ -354,6 +375,15 @@ export default function HomePage() {
                   {link.label}
                 </Link>
               ))}
+              <a
+                href="https://x.com/Bagsradar"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-white/70 transition-colors hover:text-white"
+              >
+                <XIcon />
+                <span>Follow on X</span>
+              </a>
             </div>
           </div>
         </footer>
