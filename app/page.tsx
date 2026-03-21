@@ -357,6 +357,23 @@ export default function HomePage() {
           </section>
         </section>
 
+        <div className="mt-12 flex items-center justify-center">
+          <a
+            href="https://www.producthunt.com/products/bagsradar?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-bagsradar"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-transform duration-300 hover:scale-105 opacity-90 hover:opacity-100"
+          >
+            <img
+              alt="BagsRadar - Real-time health dashboard for the Bags ecosystem | Product Hunt"
+              src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1102275&theme=light"
+              width="250"
+              height="54"
+              className="h-auto max-w-full"
+            />
+          </a>
+        </div>
+
         <footer className="mt-auto border-t border-white/10 py-6">
           <div className="flex flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left">
             <div>
