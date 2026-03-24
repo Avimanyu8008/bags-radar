@@ -110,6 +110,22 @@ function XIcon() {
 export default function HomePage() {
   const [services, setServices] = useState<ServiceResult[]>(DEMO_SERVICE_RESULTS);
   const [checkedAt, setCheckedAt] = useState(() => new Date().toISOString());
+  const [displayTime, setDisplayTime] = useState("");
+
+  useEffect(() => {
+    if (!checkedAt) {
+      setDisplayTime("");
+      return;
+    }
+
+    setDisplayTime(
+      new Date(checkedAt).toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+      })
+    );
+  }, [checkedAt]);
 
   useEffect(() => {
     let mounted = true;
@@ -175,7 +191,7 @@ export default function HomePage() {
         </nav>
 
         <section className="relative flex flex-1 flex-col items-center justify-center gap-10 rounded-[32px] md:gap-12">
-          <div className="pointer-events-none absolute inset-0 -z-20">
+          <div className="pointer-events-none absolute inset-0 -z-30">
             <video
               autoPlay
               loop
@@ -189,18 +205,21 @@ export default function HomePage() {
               />
             </video>
           </div>
-          <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
-          <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[24rem] overflow-hidden sm:h-[28rem]">
+
+          <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+            <div className="absolute left-[8%] top-[10%] h-72 w-72 rounded-full bg-[radial-gradient(circle_at_30%_30%,rgba(34,211,238,0.15),transparent_60%)] opacity-50 blur-2xl animate-[floatGlow_18s_ease-in-out_infinite] sm:h-96 sm:w-96" />
+            <div className="absolute right-[6%] top-[8%] h-64 w-64 rounded-full bg-[radial-gradient(circle_at_70%_30%,rgba(59,130,246,0.12),transparent_62%)] opacity-30 blur-2xl animate-[floatGlowReverse_24s_ease-in-out_infinite] sm:h-80 sm:w-80" />
             <div className="absolute left-1/2 top-10 h-60 w-[20rem] -translate-x-[58%] rounded-full bg-cyan-400/10 blur-3xl animate-[auroraFloat_20s_ease-in-out_infinite] sm:h-72 sm:w-[34rem]" />
             <div className="absolute right-[4%] top-24 h-52 w-[16rem] rounded-full bg-teal-300/8 blur-3xl animate-[auroraDrift_18s_ease-in-out_infinite] sm:right-[8%] sm:h-64 sm:w-[26rem]" />
             <div className="absolute left-[8%] top-28 h-44 w-[14rem] rounded-full bg-sky-300/7 blur-3xl animate-[auroraDrift_24s_ease-in-out_infinite_reverse] sm:left-[12%] sm:h-56 sm:w-[22rem]" />
+            <div className="absolute inset-x-0 top-16 flex justify-center">
+              <div className="h-40 w-[22rem] bg-gradient-to-r from-cyan-400/20 via-transparent to-blue-400/20 blur-2xl sm:h-52 sm:w-[34rem]" />
+            </div>
           </div>
 
-          <div className="pointer-events-none absolute inset-x-0 top-16 z-0 flex justify-center">
-            <div className="h-40 w-[22rem] bg-gradient-to-r from-cyan-400/20 via-transparent to-blue-400/20 blur-2xl sm:h-52 sm:w-[34rem]" />
-          </div>
+          <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
 
-          <div className="relative z-10 flex max-w-4xl animate-[fadeIn_700ms_ease-out] flex-col items-center gap-5 px-4 py-24 text-center md:py-32">
+          <div className="relative z-20 flex max-w-4xl animate-[fadeIn_700ms_ease-out] flex-col items-center gap-5 px-4 py-24 text-center md:py-32">
             <p className="text-xs uppercase tracking-[0.34em] text-emerald-300/90 sm:text-sm sm:tracking-[0.38em]">
               Bags Ecosystem Platform
             </p>
@@ -224,17 +243,11 @@ export default function HomePage() {
               </span>
               <span>All systems operational</span>
               <span className="hidden text-white/80 sm:inline">|</span>
-              <span className="text-white/85">
-                Last checked {new Date(checkedAt).toLocaleTimeString([], {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                  second: "2-digit"
-                })}
-              </span>
+              <span className="text-white/85">Last checked {displayTime || "--:--:--"}</span>
             </Link>
           </div>
 
-          <section className="relative z-10 w-full max-w-5xl rounded-[28px] border border-white/20 bg-white/[0.07] px-4 py-5 shadow-[0_0_40px_rgba(34,211,238,0.08),0_24px_80px_rgba(2,6,23,0.28)] backdrop-blur-md sm:rounded-[32px] sm:p-6 md:p-8">
+          <section className="relative z-20 w-full max-w-5xl rounded-[28px] border border-white/20 bg-white/[0.07] px-4 py-5 shadow-[0_0_40px_rgba(34,211,238,0.08),0_24px_80px_rgba(2,6,23,0.28)] backdrop-blur-md sm:rounded-[32px] sm:p-6 md:p-8">
             <div className="flex flex-col gap-4 md:gap-6">
               <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                 <div>
@@ -311,7 +324,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          <section className="relative z-10 grid w-full grid-cols-1 gap-5 sm:grid-cols-2 md:gap-6">
+          <section className="relative z-20 grid w-full grid-cols-1 gap-5 sm:grid-cols-2 md:gap-6">
             {features.map((feature) => (
               <article
                 key={feature.title}
@@ -345,7 +358,7 @@ export default function HomePage() {
             ))}
           </section>
 
-          <section className="relative z-10 w-full rounded-[28px] border border-white/20 bg-white/[0.07] p-6 pb-8 shadow-[0_20px_60px_rgba(2,6,23,0.24)] backdrop-blur-md md:p-8 md:pb-10">
+          <section className="relative z-20 w-full rounded-[28px] border border-white/20 bg-white/[0.07] p-6 pb-8 shadow-[0_20px_60px_rgba(2,6,23,0.24)] backdrop-blur-md md:p-8 md:pb-10">
             <div className="flex flex-col gap-4 md:gap-6">
               <div className="text-center md:text-left">
                 <p className="text-sm uppercase tracking-[0.3em] text-white/85">
@@ -449,6 +462,34 @@ export default function HomePage() {
           50% {
             transform: scale(1.1);
             opacity: 1;
+          }
+        }
+
+        @keyframes floatGlow {
+          0% {
+            transform: translate(0px, 0px);
+          }
+
+          50% {
+            transform: translate(40px, -30px);
+          }
+
+          100% {
+            transform: translate(0px, 0px);
+          }
+        }
+
+        @keyframes floatGlowReverse {
+          0% {
+            transform: translate(0px, 0px);
+          }
+
+          50% {
+            transform: translate(-32px, 24px);
+          }
+
+          100% {
+            transform: translate(0px, 0px);
           }
         }
 

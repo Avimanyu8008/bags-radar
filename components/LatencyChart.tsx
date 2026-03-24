@@ -1,5 +1,6 @@
-"use client";
+﻿"use client";
 
+import { useEffect, useState } from "react";
 import {
   CartesianGrid,
   Legend,
@@ -12,16 +13,33 @@ import {
 } from "recharts";
 import type { LatencyPoint } from "@/data/services";
 
-export function LatencyChart({ history }: { history: LatencyPoint[] }) {
-  const chartData = history.map((point) => ({
-    time: new Date(point.checkedAt).toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit"
-    }),
+interface ChartRow {
+  time: string;
+  website: number;
+  rpc: number;
+  api: number;
+}
+
+function buildChartData(history: LatencyPoint[], useClientTime: boolean): ChartRow[] {
+  return history.map((point) => ({
+    time: useClientTime
+      ? new Date(point.checkedAt).toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit"
+        })
+      : "--:--",
     website: point.services.website ?? 0,
     rpc: point.services.rpc ?? 0,
     api: point.services.api ?? 0
   }));
+}
+
+export function LatencyChart({ history }: { history: LatencyPoint[] }) {
+  const [chartData, setChartData] = useState<ChartRow[]>(() => buildChartData(history, false));
+
+  useEffect(() => {
+    setChartData(buildChartData(history, true));
+  }, [history]);
 
   return (
     <div className="panel p-5">

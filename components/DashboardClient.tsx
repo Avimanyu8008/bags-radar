@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
@@ -33,11 +33,27 @@ export function DashboardClient() {
   const [history, setHistory] = useState<LatencyPoint[]>(DEMO_LATENCY_HISTORY);
   const [counts, setCounts] = useState<ReportCounts>(DEMO_REPORT_COUNTS);
   const [checkedAt, setCheckedAt] = useState<string>(new Date().toISOString());
+  const [displayTime, setDisplayTime] = useState("");
   const [source, setSource] = useState<DashboardPayload["source"]>("demo");
   const discordAlertsEnabled =
     process.env.NEXT_PUBLIC_DISCORD_ENABLED === "true";
 
   console.log("DISCORD ENV:", process.env.NEXT_PUBLIC_DISCORD_ENABLED);
+
+  useEffect(() => {
+    if (!checkedAt) {
+      setDisplayTime("");
+      return;
+    }
+
+    setDisplayTime(
+      new Date(checkedAt).toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+      })
+    );
+  }, [checkedAt]);
 
   useEffect(() => {
     let mounted = true;
@@ -115,14 +131,7 @@ export function DashboardClient() {
             </div>
 
             <div className="flex flex-col gap-3 text-sm text-gray-300 md:items-end">
-              <span>
-                Last check:{" "}
-                {new Date(checkedAt).toLocaleTimeString([], {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                  second: "2-digit"
-                })}
-              </span>
+              <span>Last check: {displayTime || "--:--:--"}</span>
               <span>
                 Average latency: {averageLatency !== null ? `${averageLatency}ms` : "N/A"}
               </span>

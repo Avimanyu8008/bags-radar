@@ -1,9 +1,21 @@
-"use client";
+﻿"use client";
 
+import { useEffect, useState } from "react";
 import { StatusBadge } from "@/components/StatusBadge";
 import type { ServiceResult } from "@/data/services";
 
 export function ServiceCard({ service }: { service: ServiceResult }) {
+  const [displayTime, setDisplayTime] = useState("");
+
+  useEffect(() => {
+    if (!service.checkedAt) {
+      setDisplayTime("");
+      return;
+    }
+
+    setDisplayTime(new Date(service.checkedAt).toLocaleTimeString());
+  }, [service.checkedAt]);
+
   return (
     <article className="panel p-5 transition-transform duration-300 hover:-translate-y-1">
       <div className="flex items-start justify-between gap-4">
@@ -25,9 +37,7 @@ export function ServiceCard({ service }: { service: ServiceResult }) {
             {service.latency !== null ? `${service.latency}ms` : "Timed out"}
           </p>
         </div>
-        <p className="text-xs text-gray-500">
-          {new Date(service.checkedAt).toLocaleTimeString()}
-        </p>
+        <p className="text-xs text-gray-500">{displayTime || "--:--:--"}</p>
       </div>
     </article>
   );

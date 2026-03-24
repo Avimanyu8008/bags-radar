@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -61,7 +61,23 @@ function buildUptimeBars(service: ServiceResult, incidents: IncidentRecord[]) {
 export default function StatusPage() {
   const [services, setServices] = useState<ServiceResult[]>(DEMO_SERVICE_RESULTS);
   const [checkedAt, setCheckedAt] = useState<string>(new Date().toISOString());
+  const [displayTime, setDisplayTime] = useState("");
   const [incidents, setIncidents] = useState<IncidentRecord[]>([]);
+
+  useEffect(() => {
+    if (!checkedAt) {
+      setDisplayTime("");
+      return;
+    }
+
+    setDisplayTime(
+      new Date(checkedAt).toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+      })
+    );
+  }, [checkedAt]);
 
   useEffect(() => {
     let mounted = true;
@@ -127,14 +143,7 @@ export default function StatusPage() {
             </p>
           </div>
 
-          <p className="text-sm text-[#525252]">
-            Last updated{" "}
-            {new Date(checkedAt).toLocaleTimeString([], {
-              hour: "2-digit",
-              minute: "2-digit",
-              second: "2-digit"
-            })}
-          </p>
+          <p className="text-sm text-[#525252]">Last updated {displayTime || "--:--:--"}</p>
         </header>
 
         <section className="rounded-3xl border border-[#e5e5e5] bg-[#f7f7f7] p-6 md:p-8">
