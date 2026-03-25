@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import type { ReportType } from "@/data/services";
@@ -42,10 +42,10 @@ export function ReportButtons() {
     <div className="panel p-5">
       <div className="flex flex-col gap-4">
         <div>
-          <p className="text-sm uppercase tracking-[0.3em] text-gray-500">
+          <p className="text-sm uppercase tracking-[0.3em] text-white/60">
             Crowd reporting
           </p>
-          <h3 className="mt-2 text-xl font-semibold">Report an issue</h3>
+          <h3 className="mt-2 text-xl font-semibold text-white/90">Report an issue</h3>
         </div>
 
         <div className="grid gap-3 md:grid-cols-3">
@@ -55,14 +55,14 @@ export function ReportButtons() {
               type="button"
               onClick={() => handleReport(button.type)}
               disabled={activeType !== null}
-              className="rounded-xl border border-gray-800 bg-gray-950 px-4 py-3 text-sm font-medium text-white transition hover:border-gray-700 hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-60"
+              className="rounded-2xl bg-gradient-to-r from-purple-500 to-indigo-500 px-4 py-3 text-sm font-medium text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {activeType === button.type ? "Sending..." : button.label}
             </button>
           ))}
         </div>
 
-        <p className="text-sm text-gray-400">{message}</p>
+        <p className="text-sm text-white/60">{message}</p>
       </div>
     </div>
   );

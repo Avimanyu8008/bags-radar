@@ -125,31 +125,31 @@ export default function StatusPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-white px-4 py-10 text-[#111111] md:px-8">
+    <main className="min-h-screen bg-gradient-to-br from-[#0b0f1a] via-[#1a0b2e] to-[#3b0764] px-4 py-10 text-white md:px-8">
       <div className="mx-auto flex max-w-5xl flex-col gap-8">
-        <header className="flex flex-col gap-5">
+        <header className="panel flex flex-col gap-5 p-6 md:p-8">
           <div>
-            <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
+            <h1 className="text-4xl font-semibold tracking-tight text-white/90 md:text-5xl">
               Bags Ecosystem Status
             </h1>
           </div>
 
-          <div className="rounded-2xl border border-[#bbf7d0] bg-[#f0fdf4] px-6 py-5">
-            <p className="text-lg font-semibold text-[#166534]">
+          <div className="rounded-2xl border border-white/10 bg-white/5 px-6 py-5 backdrop-blur-md">
+            <p className="text-lg font-semibold text-white/90">
               We&apos;re fully operational
             </p>
-            <p className="mt-1 text-sm text-[#166534]">
+            <p className="mt-1 text-sm text-white/60">
               We&apos;re not aware of any issues affecting our systems.
             </p>
           </div>
 
-          <p className="text-sm text-[#525252]">Last updated {displayTime || "--:--:--"}</p>
+          <p className="text-sm text-white/60">Last updated {displayTime || "--:--:--"}</p>
         </header>
 
-        <section className="rounded-3xl border border-[#e5e5e5] bg-[#f7f7f7] p-6 md:p-8">
+        <section className="panel p-6 md:p-8">
           <div className="flex flex-col gap-6">
             <div>
-              <h2 className="text-2xl font-semibold text-[#111111]">System status</h2>
+              <h2 className="text-2xl font-semibold text-white/90">System status</h2>
             </div>
 
             <div className="space-y-6">
@@ -159,13 +159,13 @@ export default function StatusPage() {
                 return (
                   <div
                     key={service.id}
-                    className="border-b border-[#e5e5e5] pb-6 last:border-b-0 last:pb-0"
+                    className="border-b border-white/10 pb-6 last:border-b-0 last:pb-0"
                   >
                     <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-                      <h3 className="text-lg font-medium text-[#111111]">
+                      <h3 className="text-lg font-medium text-white/90">
                         {service.name}
                       </h3>
-                      <span className="text-sm text-[#525252]">
+                      <span className="text-sm text-white/60">
                         {service.status === "UP"
                           ? "Operational"
                           : service.status === "SLOW"
@@ -183,7 +183,7 @@ export default function StatusPage() {
                       ))}
                     </div>
 
-                    <p className="mt-3 text-sm text-[#525252]">
+                    <p className="mt-3 text-sm text-white/60">
                       {uptimeLabels[service.status]} uptime
                     </p>
                   </div>
@@ -193,10 +193,10 @@ export default function StatusPage() {
           </div>
         </section>
 
-        <div className="flex items-center justify-between rounded-2xl border border-[#e5e5e5] bg-[#f7f7f7] px-6 py-4">
+        <div className="panel flex items-center justify-between px-6 py-4">
           <div>
-            <p className="text-base font-medium text-[#111111]">View incident history</p>
-            <p className="mt-1 text-sm text-[#525252]">
+            <p className="text-base font-medium text-white/90">View incident history</p>
+            <p className="mt-1 text-sm text-white/60">
               {incidents.length > 0
                 ? `${incidents.length} recent incident updates available`
                 : "Check the incident timeline for recent updates"}
@@ -204,7 +204,7 @@ export default function StatusPage() {
           </div>
           <Link
             href="/incidents"
-            className="rounded-full border border-[#e5e5e5] bg-white px-4 py-2 text-sm font-semibold text-[#111111] transition hover:bg-[#fafafa]"
+            className="rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 px-4 py-2 text-sm font-semibold text-white transition hover:opacity-90"
           >
             Open timeline
           </Link>

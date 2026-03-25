@@ -44,23 +44,24 @@ export function LatencyChart({ history }: { history: LatencyPoint[] }) {
   return (
     <div className="panel p-5">
       <div className="mb-6">
-        <p className="text-sm uppercase tracking-[0.3em] text-gray-500">
+        <p className="text-sm uppercase tracking-[0.3em] text-white/60">
           Trends
         </p>
-        <h3 className="mt-2 text-xl font-semibold">Latency over time</h3>
+        <h3 className="mt-2 text-xl font-semibold text-white/90">Latency over time</h3>
       </div>
 
       <div className="h-80">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={chartData}>
-            <CartesianGrid stroke="#1f2937" strokeDasharray="3 3" />
-            <XAxis dataKey="time" stroke="#9ca3af" />
-            <YAxis stroke="#9ca3af" unit="ms" />
+            <CartesianGrid stroke="rgba(255,255,255,0.1)" strokeDasharray="3 3" />
+            <XAxis dataKey="time" stroke="rgba(255,255,255,0.6)" />
+            <YAxis stroke="rgba(255,255,255,0.6)" unit="ms" />
             <Tooltip
               contentStyle={{
-                backgroundColor: "#111827",
-                borderColor: "#1f2937",
-                borderRadius: "12px"
+                backgroundColor: "rgba(15, 23, 42, 0.92)",
+                borderColor: "rgba(255,255,255,0.1)",
+                borderRadius: "16px",
+                color: "#ffffff"
               }}
             />
             <Legend />
@@ -68,7 +69,7 @@ export function LatencyChart({ history }: { history: LatencyPoint[] }) {
               type="monotone"
               dataKey="website"
               name="Bags Website"
-              stroke="#4ade80"
+              stroke="#8b5cf6"
               strokeWidth={3}
               dot={false}
             />
@@ -76,7 +77,7 @@ export function LatencyChart({ history }: { history: LatencyPoint[] }) {
               type="monotone"
               dataKey="api"
               name="Bags API"
-              stroke="#38bdf8"
+              stroke="#6366f1"
               strokeWidth={3}
               dot={false}
             />
@@ -84,7 +85,7 @@ export function LatencyChart({ history }: { history: LatencyPoint[] }) {
               type="monotone"
               dataKey="rpc"
               name="Solana RPC"
-              stroke="#facc15"
+              stroke="#22c55e"
               strokeWidth={3}
               dot={false}
             />

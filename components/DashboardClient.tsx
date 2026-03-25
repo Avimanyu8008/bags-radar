@@ -113,24 +113,24 @@ export function DashboardClient() {
   }, [services]);
 
   return (
-    <main className="min-h-screen bg-gray-950 px-4 py-8 text-white md:px-8">
+    <main className="min-h-screen bg-gradient-to-br from-[#0b0f1a] via-[#1a0b2e] to-[#3b0764] px-4 py-8 text-white md:px-8">
       <div className="mx-auto flex max-w-7xl flex-col gap-8">
         <header className="panel relative overflow-hidden p-6 md:p-8">
-          <div className="absolute inset-0 -z-10 bg-grid bg-[size:18px_18px] opacity-20" />
+          <div className="absolute inset-0 -z-10 bg-grid bg-[size:18px_18px] opacity-15" />
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="text-sm uppercase tracking-[0.35em] text-green-400">
+              <p className="text-sm uppercase tracking-[0.35em] text-indigo-300">
                 Bags Ecosystem Monitor
               </p>
-              <h1 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
+              <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white/90 md:text-5xl">
                 BagsRadar
               </h1>
-              <p className="mt-3 max-w-2xl text-base text-gray-300 md:text-lg">
+              <p className="mt-3 max-w-2xl text-base text-white/60 md:text-lg">
                 Real-time health dashboard for the Bags ecosystem.
               </p>
             </div>
 
-            <div className="flex flex-col gap-3 text-sm text-gray-300 md:items-end">
+            <div className="flex flex-col gap-3 text-sm text-white/60 md:items-end">
               <span>Last check: {displayTime || "--:--:--"}</span>
               <span>
                 Average latency: {averageLatency !== null ? `${averageLatency}ms` : "N/A"}
@@ -147,7 +147,7 @@ export function DashboardClient() {
                 <span
                   className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] ${
                     discordAlertsEnabled
-                      ? "bg-green-400/10 text-green-400 ring-1 ring-green-400/20"
+                      ? "bg-green-500/10 text-green-400 ring-1 ring-green-500/20"
                       : "bg-yellow-400/10 text-yellow-400 ring-1 ring-yellow-400/20"
                   }`}
                 >
@@ -157,13 +157,13 @@ export function DashboardClient() {
               <div className="flex flex-wrap gap-3 md:justify-end">
                 <Link
                   href="/speedtest"
-                  className="inline-flex rounded-full border border-gray-700 px-4 py-2 text-sm font-medium transition hover:border-gray-500 hover:bg-gray-800"
+                  className="inline-flex rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 px-4 py-2 text-sm font-medium text-white transition hover:opacity-90"
                 >
                   Open speed test
                 </Link>
                 <Link
                   href="/incidents"
-                  className="inline-flex rounded-full border border-gray-700 px-4 py-2 text-sm font-medium transition hover:border-gray-500 hover:bg-gray-800"
+                  className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white/90 backdrop-blur-md transition hover:bg-white/10"
                 >
                   View incidents
                 </Link>
@@ -182,18 +182,18 @@ export function DashboardClient() {
           <LatencyChart history={history} />
 
           <div className="panel p-5">
-            <p className="text-sm uppercase tracking-[0.3em] text-gray-500">
+            <p className="text-sm uppercase tracking-[0.3em] text-white/60">
               Reports in last 30 minutes
             </p>
-            <h3 className="mt-2 text-xl font-semibold">Community outage pulse</h3>
+            <h3 className="mt-2 text-xl font-semibold text-white/90">Community outage pulse</h3>
             <div className="mt-6 space-y-4">
               {Object.entries(REPORT_LABELS).map(([type, label]) => (
                 <div
                   key={type}
-                  className="flex items-center justify-between rounded-xl border border-gray-800 bg-gray-950 px-4 py-4"
+                  className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-4 backdrop-blur-md"
                 >
-                  <span className="text-sm text-gray-300">{label}</span>
-                  <span className="text-2xl font-semibold text-white">
+                  <span className="text-sm text-white/60">{label}</span>
+                  <span className="text-2xl font-semibold text-white/90">
                     {counts[type as keyof ReportCounts]}
                   </span>
                 </div>
