@@ -3,15 +3,7 @@
 import { useEffect, useState } from "react";
 import type { BagsData } from "@/lib/bags";
 import { getBagsData } from "@/lib/bags";
-
-function formatCurrency(value: number, maximumFractionDigits: number) {
-  const safeValue = Number(value || 0);
-
-  return new Intl.NumberFormat("en-US", {
-    minimumFractionDigits: maximumFractionDigits > 2 ? maximumFractionDigits : 2,
-    maximumFractionDigits
-  }).format(safeValue);
-}
+import { formatInteger, formatPrice, safeNumber } from "@/lib/format";
 
 export default function BagsStats() {
   const [data, setData] = useState<BagsData | null>(null);
@@ -34,9 +26,9 @@ export default function BagsStats() {
     return null;
   }
 
-  const safePrice = Number(data.price || 0);
-  const safeVolume = Number(data.volume || 0);
-  const safeChange = Number(data.change || 0);
+  const safePrice = safeNumber(data?.price ?? 0);
+  const safeVolume = safeNumber(data?.volume ?? 0);
+  const safeChange = safeNumber(data?.change ?? 0);
   const health =
     safeChange > 5 ? "Strong" :
     safeChange > 0 ? "Stable" : "Weak";
@@ -48,10 +40,10 @@ export default function BagsStats() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <div className="text-lg font-semibold text-white/90">
-            ${formatCurrency(safePrice, 4)}
+            ${formatPrice(safePrice)}
           </div>
           <div className="text-xs text-white/50">
-            24h volume: ${formatCurrency(safeVolume, 0)}
+            24h volume: ${formatInteger(safeVolume)}
           </div>
           <div className="mt-1 text-xs text-white/50">
             Ecosystem health: {health}
@@ -63,7 +55,7 @@ export default function BagsStats() {
             safeChange >= 0 ? "text-green-400" : "text-red-400"
           }`}
         >
-          {safeChange >= 0 ? "+" : ""}{safeChange.toFixed(1)}%
+          {safeChange >= 0 ? "+" : ""}{safeNumber(safeChange).toFixed(1)}%
         </div>
       </div>
     </div>
