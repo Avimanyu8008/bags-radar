@@ -6,30 +6,26 @@
 
 export async function getBagsData(): Promise<BagsData> {
   try {
-    const res = await fetch("https://api.bags.fm/v1/market", {
+    const res = await fetch("/api/bags", {
       cache: "no-store"
     });
 
     if (!res.ok) {
-      throw new Error("Failed to fetch Bags market data");
+      throw new Error("failed");
     }
 
-    const data = (await res.json()) as {
-      price?: number;
-      volume24h?: number;
-      change24h?: number;
-    };
+    const data = (await res.json()) as Partial<BagsData>;
 
     return {
-      price: data.price || 0,
-      volume: data.volume24h || 0,
-      change: data.change24h || 0
+      price: Number(data.price ?? 0.0012),
+      volume: Number(data.volume ?? 12000),
+      change: Number(data.change ?? 2.5)
     };
   } catch {
     return {
       price: 0.0012,
       volume: 12000,
-      change: 5.2
+      change: 2.5
     };
   }
 }

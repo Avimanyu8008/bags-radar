@@ -5,10 +5,12 @@ import type { BagsData } from "@/lib/bags";
 import { getBagsData } from "@/lib/bags";
 
 function formatCurrency(value: number, maximumFractionDigits: number) {
+  const safeValue = Number(value || 0);
+
   return new Intl.NumberFormat("en-US", {
     minimumFractionDigits: maximumFractionDigits > 2 ? maximumFractionDigits : 2,
     maximumFractionDigits
-  }).format(value);
+  }).format(safeValue);
 }
 
 export default function BagsStats() {
@@ -32,9 +34,12 @@ export default function BagsStats() {
     return null;
   }
 
+  const safePrice = Number(data.price || 0);
+  const safeVolume = Number(data.volume || 0);
+  const safeChange = Number(data.change || 0);
   const health =
-    data.change > 5 ? "Strong" :
-    data.change > 0 ? "Stable" : "Weak";
+    safeChange > 5 ? "Strong" :
+    safeChange > 0 ? "Stable" : "Weak";
 
   return (
     <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-md shadow-[0_0_80px_rgba(139,92,246,0.18)]">
@@ -43,10 +48,10 @@ export default function BagsStats() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <div className="text-lg font-semibold text-white/90">
-            ${formatCurrency(data.price, 4)}
+            ${formatCurrency(safePrice, 4)}
           </div>
           <div className="text-xs text-white/50">
-            24h volume: ${formatCurrency(data.volume, 0)}
+            24h volume: ${formatCurrency(safeVolume, 0)}
           </div>
           <div className="mt-1 text-xs text-white/50">
             Ecosystem health: {health}
@@ -55,10 +60,10 @@ export default function BagsStats() {
 
         <div
           className={`text-sm font-medium ${
-            data.change >= 0 ? "text-green-400" : "text-red-400"
+            safeChange >= 0 ? "text-green-400" : "text-red-400"
           }`}
         >
-          {data.change >= 0 ? "+" : ""}{data.change}%
+          {safeChange >= 0 ? "+" : ""}{safeChange.toFixed(1)}%
         </div>
       </div>
     </div>
