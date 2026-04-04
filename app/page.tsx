@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import BagsStats from "@/components/BagsStats";
 import { DEMO_SERVICE_RESULTS, type ServiceResult } from "@/data/services";
 
 const features = [
@@ -245,6 +246,10 @@ export default function HomePage() {
               <span className="hidden text-white/80 sm:inline">|</span>
               <span className="text-white/60">Last checked {displayTime || "--:--:--"}</span>
             </Link>
+          </div>
+
+          <div className="relative z-20 mt-6 w-full max-w-3xl">
+            <BagsStats />
           </div>
 
           <section className="relative z-20 w-full max-w-5xl rounded-[28px] border border-white/10 bg-white/5 px-4 py-5 shadow-[0_0_80px_rgba(139,92,246,0.25)] backdrop-blur-md sm:rounded-[32px] sm:p-6 md:p-8">
@@ -522,5 +527,7 @@ export default function HomePage() {
     </main>
   );
 }
+
+
 
 
