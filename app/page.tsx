@@ -54,6 +54,21 @@ const trustItems = [
   }
 ];
 
+const whyItems = [
+  {
+    title: "Detect outages early",
+    description: "Monitor critical services in real-time and identify issues before they escalate."
+  },
+  {
+    title: "Build developer trust",
+    description: "Provide transparent system health so developers can rely on Bags infrastructure."
+  },
+  {
+    title: "Ecosystem transparency",
+    description: "Make infrastructure status open and accessible to everyone."
+  }
+];
+
 interface CheckServicesPayload {
   services: ServiceResult[];
   checkedAt: string;
@@ -227,13 +242,15 @@ export default function HomePage() {
             <div className="relative">
               <div className="absolute left-1/2 top-1/2 h-24 w-48 -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-500/18 blur-3xl sm:h-32 sm:w-72" />
               <div className="absolute left-1/2 top-1/2 h-20 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/14 blur-2xl sm:h-24 sm:w-56" />
-              <h1 className="relative max-w-4xl text-4xl font-semibold tracking-tight text-white drop-shadow-[0_0_24px_rgba(139,92,246,0.25)] sm:text-5xl lg:text-6xl xl:text-7xl">
-                BagsRadar
-              </h1>
+              <h1 className="relative max-w-5xl text-4xl font-bold tracking-tight text-white drop-shadow-[0_0_24px_rgba(139,92,246,0.25)] sm:text-5xl lg:text-6xl xl:text-7xl">The Health Layer of the Bags Ecosystem</h1>
             </div>
-            <p className="max-w-2xl text-sm leading-7 text-white/60 sm:text-base md:text-lg">
-              Real-time monitoring platform for the Bags ecosystem.
+            <p className="max-w-3xl text-sm leading-7 text-white/60 sm:text-base md:text-lg">
+              Real-time visibility into Bags infrastructure, APIs, and system reliability.
             </p>
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs text-white/70 backdrop-blur-md transition-colors duration-300 hover:text-white">
+              <span className="h-2 w-2 rounded-full bg-green-400" />
+              <span>Powered by Bags API</span>
+            </div>
             <Link
               href="/status"
               className="inline-flex w-full max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-3 text-center text-sm font-medium text-white/90 shadow-[0_0_80px_rgba(139,92,246,0.25)] backdrop-blur-md transition-all duration-300 hover:bg-white/10 sm:w-auto sm:gap-3 sm:px-5"
@@ -259,6 +276,7 @@ export default function HomePage() {
                   <p className="text-sm uppercase tracking-[0.3em] text-white/60">
                     Live Dashboard Preview
                   </p>
+                  <p className="mt-2 text-xs text-white/50">Live data from Bags infrastructure</p>
                   <h2 className="mt-2 text-2xl font-semibold text-white">
                     Monitoring at a glance
                   </h2>
@@ -321,6 +339,7 @@ export default function HomePage() {
                         <p className="mt-2 text-3xl font-semibold text-white">
                           {service.latency !== null ? `${service.latency}ms` : "Timed out"}
                         </p>
+                        <p className="mt-3 text-xs text-white/40">Source: Bags API</p>
                       </div>
                     </div>
                   ))}
@@ -389,6 +408,25 @@ export default function HomePage() {
               </div>
             </div>
           </section>
+        </section>
+
+        <section className="relative z-20 w-full rounded-[28px] border border-white/10 bg-white/5 p-6 shadow-[0_0_80px_rgba(139,92,246,0.25)] backdrop-blur-md md:p-8">
+          <div className="flex flex-col gap-4 md:gap-6">
+            <div className="text-center md:text-left">
+              <p className="text-sm uppercase tracking-[0.3em] text-white/60">Why BagsRadar matters</p>
+            </div>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6">
+              {whyItems.map((item) => (
+                <div
+                  key={item.title}
+                  className="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-[0_0_80px_rgba(139,92,246,0.18)] backdrop-blur-md"
+                >
+                  <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-white/60">{item.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </section>
 
         <div className="mt-12 flex items-center justify-center">
@@ -527,6 +565,10 @@ export default function HomePage() {
     </main>
   );
 }
+
+
+
+
 
 
 

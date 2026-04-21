@@ -36,6 +36,7 @@ export function ServiceCard({ service }: { service: ServiceResult }) {
           <p className="mt-2 text-3xl font-semibold text-white">
             {service.latency !== null ? `${service.latency}ms` : "Timed out"}
           </p>
+          <p className="mt-3 text-xs text-white/40">Source: Bags API</p>
         </div>
         <p className="text-xs text-gray-500">{displayTime || "--:--:--"}</p>
       </div>
