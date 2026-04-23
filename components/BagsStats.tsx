@@ -34,7 +34,7 @@ export default function BagsStats() {
     safeChange > 0 ? "Stable" : "Weak";
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-md shadow-[0_0_80px_rgba(139,92,246,0.18)]">
+    <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-md shadow-[0_0_40px_rgba(16,185,129,0.08)]">
       <div className="mb-2 text-xs text-white/60">BAGS ECOSYSTEM</div>
 
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -61,3 +61,4 @@ export default function BagsStats() {
     </div>
   );
 }
+

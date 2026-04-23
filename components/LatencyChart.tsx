@@ -58,7 +58,7 @@ export function LatencyChart({ history }: { history: LatencyPoint[] }) {
             <YAxis stroke="rgba(255,255,255,0.6)" unit="ms" />
             <Tooltip
               contentStyle={{
-                backgroundColor: "rgba(15, 23, 42, 0.92)",
+                backgroundColor: "rgba(0, 0, 0, 0.92)",
                 borderColor: "rgba(255,255,255,0.1)",
                 borderRadius: "16px",
                 color: "#ffffff"
@@ -69,7 +69,7 @@ export function LatencyChart({ history }: { history: LatencyPoint[] }) {
               type="monotone"
               dataKey="website"
               name="Bags Website"
-              stroke="#8b5cf6"
+              stroke="#10b981"
               strokeWidth={3}
               dot={false}
             />
@@ -77,7 +77,7 @@ export function LatencyChart({ history }: { history: LatencyPoint[] }) {
               type="monotone"
               dataKey="api"
               name="Bags API"
-              stroke="#6366f1"
+              stroke="#34d399"
               strokeWidth={3}
               dot={false}
             />
@@ -85,7 +85,7 @@ export function LatencyChart({ history }: { history: LatencyPoint[] }) {
               type="monotone"
               dataKey="rpc"
               name="Solana RPC"
-              stroke="#22c55e"
+              stroke="#facc15"
               strokeWidth={3}
               dot={false}
             />

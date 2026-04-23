@@ -7,12 +7,12 @@ export default async function IncidentsPage() {
   const incidents = await getIncidents();
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-[#0b0f1a] via-[#1a0b2e] to-[#3b0764] px-4 py-8 text-white md:px-8">
+    <main className="min-h-screen bg-black px-4 py-8 text-white md:px-8">
       <div className="mx-auto flex max-w-6xl flex-col gap-8">
         <header className="panel p-6 md:p-8">
           <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="text-sm uppercase tracking-[0.35em] text-indigo-300">
+              <p className="text-sm uppercase tracking-[0.35em] text-emerald-400">
                 BagsRadar Timeline
               </p>
               <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white/90">
@@ -26,13 +26,13 @@ export default async function IncidentsPage() {
             <div className="flex gap-3">
               <Link
                 href="/"
-                className="rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white/90 backdrop-blur-md transition hover:bg-white/10"
+                className="rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white/90 backdrop-blur-md transition hover:border-emerald-500/30 hover:bg-white/10"
               >
                 Dashboard
               </Link>
               <Link
                 href="/speedtest"
-                className="rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
+                className="rounded-full bg-emerald-500/90 px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-emerald-500"
               >
                 Speed test
               </Link>
@@ -70,7 +70,7 @@ export default async function IncidentsPage() {
                           className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] ${
                             incident.status === "down"
                               ? "bg-red-400/10 text-red-400"
-                              : "bg-green-500/10 text-green-400"
+                              : "bg-emerald-500/10 text-emerald-400"
                           }`}
                         >
                           {incident.status}

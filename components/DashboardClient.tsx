@@ -113,13 +113,13 @@ export function DashboardClient() {
   }, [services]);
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-[#0b0f1a] via-[#1a0b2e] to-[#3b0764] px-4 py-8 text-white md:px-8">
+    <main className="min-h-screen bg-black px-4 py-8 text-white md:px-8">
       <div className="mx-auto flex max-w-7xl flex-col gap-8">
         <header className="panel relative overflow-hidden p-6 md:p-8">
           <div className="absolute inset-0 -z-10 bg-grid bg-[size:18px_18px] opacity-15" />
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="text-sm uppercase tracking-[0.35em] text-indigo-300">
+              <p className="text-sm uppercase tracking-[0.35em] text-emerald-400">
                 Bags Ecosystem Monitor
               </p>
               <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white/90 md:text-5xl">
@@ -139,7 +139,7 @@ export function DashboardClient() {
                 <div className="flex items-center gap-3">
                   <span
                     className={`h-2.5 w-2.5 rounded-full ${
-                      source === "live" ? "bg-green-400" : "bg-yellow-400"
+                      source === "live" ? "bg-emerald-400" : "bg-yellow-400"
                     }`}
                   />
                   <span>{source === "live" ? "Live checks" : "Demo mode"}</span>
@@ -147,7 +147,7 @@ export function DashboardClient() {
                 <span
                   className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] ${
                     discordAlertsEnabled
-                      ? "bg-green-500/10 text-green-400 ring-1 ring-green-500/20"
+                      ? "bg-emerald-500/10 text-emerald-400 ring-1 ring-emerald-500/20"
                       : "bg-yellow-400/10 text-yellow-400 ring-1 ring-yellow-400/20"
                   }`}
                 >
@@ -157,13 +157,13 @@ export function DashboardClient() {
               <div className="flex flex-wrap gap-3 md:justify-end">
                 <Link
                   href="/speedtest"
-                  className="inline-flex rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 px-4 py-2 text-sm font-medium text-white transition hover:opacity-90"
+                  className="inline-flex rounded-full bg-emerald-500/90 px-4 py-2 text-sm font-medium text-black transition hover:bg-emerald-500"
                 >
                   Open speed test
                 </Link>
                 <Link
                   href="/incidents"
-                  className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white/90 backdrop-blur-md transition hover:bg-white/10"
+                  className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white/90 backdrop-blur-md transition hover:border-emerald-500/30 hover:bg-white/10"
                 >
                   View incidents
                 </Link>

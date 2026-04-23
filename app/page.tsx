@@ -84,7 +84,7 @@ function getPreviewTone(status: ServiceResult["status"]) {
     return "bg-yellow-400";
   }
 
-  return "bg-green-400";
+  return "bg-emerald-400";
 }
 
 function getPreviewLabel(status: ServiceResult["status"]) {
@@ -108,7 +108,7 @@ function getPreviewBadgeClasses(status: ServiceResult["status"]) {
     return "border-yellow-500/20 bg-yellow-500/10 text-yellow-400";
   }
 
-  return "border-green-500/20 bg-green-500/10 text-green-400";
+  return "border-emerald-500/20 bg-emerald-500/10 text-emerald-400";
 }
 
 function XIcon() {
@@ -176,7 +176,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-gradient-to-br from-[#0b0f1a] via-[#1a0b2e] to-[#3b0764] px-4 py-6 text-white sm:px-6 lg:px-8">
+    <main className="min-h-screen overflow-x-hidden bg-black px-4 py-6 text-white sm:px-6 lg:px-8">
       <div className="mx-auto flex min-h-[calc(100vh-3rem)] max-w-6xl flex-col gap-10 pb-8 md:gap-12">
         <nav className="sticky top-4 z-10 rounded-3xl border border-white/10 bg-white/5 px-3 py-3 shadow-[0_12px_40px_rgba(0,0,0,0.25)] backdrop-blur-md sm:rounded-full sm:px-4 md:px-6">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -188,7 +188,7 @@ export default function HomePage() {
                 <Link
                   key={link.href}
                   href={link.href as any}
-                  className="rounded-full border border-transparent px-2.5 py-1.5 transition-all duration-300 ease-out hover:border-white/10 hover:bg-white/10 hover:text-white/90 sm:px-3"
+                  className="rounded-full border border-transparent px-2.5 py-1.5 transition-all duration-300 ease-out hover:border-emerald-500/30 hover:bg-white/10 hover:text-white/90 sm:px-3"
                 >
                   {link.label}
                 </Link>
@@ -223,41 +223,43 @@ export default function HomePage() {
           </div>
 
           <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-            <div className="absolute left-[8%] top-[10%] h-72 w-72 rounded-full bg-[radial-gradient(circle_at_30%_30%,rgba(139,92,246,0.18),transparent_60%)] opacity-50 blur-2xl animate-[floatGlow_18s_ease-in-out_infinite] sm:h-96 sm:w-96" />
-            <div className="absolute right-[6%] top-[8%] h-64 w-64 rounded-full bg-[radial-gradient(circle_at_70%_30%,rgba(99,102,241,0.16),transparent_62%)] opacity-30 blur-2xl animate-[floatGlowReverse_24s_ease-in-out_infinite] sm:h-80 sm:w-80" />
-            <div className="absolute left-1/2 top-10 h-60 w-[20rem] -translate-x-[58%] rounded-full bg-purple-500/15 blur-3xl animate-[auroraFloat_20s_ease-in-out_infinite] sm:h-72 sm:w-[34rem]" />
-            <div className="absolute right-[4%] top-24 h-52 w-[16rem] rounded-full bg-indigo-500/12 blur-3xl animate-[auroraDrift_18s_ease-in-out_infinite] sm:right-[8%] sm:h-64 sm:w-[26rem]" />
-            <div className="absolute left-[8%] top-28 h-44 w-[14rem] rounded-full bg-blue-500/10 blur-3xl animate-[auroraDrift_24s_ease-in-out_infinite_reverse] sm:left-[12%] sm:h-56 sm:w-[22rem]" />
+            <div className="absolute left-[8%] top-[10%] h-72 w-72 rounded-full bg-[radial-gradient(circle_at_30%_30%,rgba(16,185,129,0.16),transparent_60%)] opacity-50 blur-2xl animate-[floatGlow_18s_ease-in-out_infinite] sm:h-96 sm:w-96" />
+            <div className="absolute right-[6%] top-[8%] h-64 w-64 rounded-full bg-[radial-gradient(circle_at_70%_30%,rgba(16,185,129,0.12),transparent_62%)] opacity-30 blur-2xl animate-[floatGlowReverse_24s_ease-in-out_infinite] sm:h-80 sm:w-80" />
+            <div className="absolute left-1/2 top-10 h-60 w-[20rem] -translate-x-[58%] rounded-full bg-emerald-500/12 blur-3xl animate-[auroraFloat_20s_ease-in-out_infinite] sm:h-72 sm:w-[34rem]" />
+            <div className="absolute right-[4%] top-24 h-52 w-[16rem] rounded-full bg-emerald-400/10 blur-3xl animate-[auroraDrift_18s_ease-in-out_infinite] sm:right-[8%] sm:h-64 sm:w-[26rem]" />
+            <div className="absolute left-[8%] top-28 h-44 w-[14rem] rounded-full bg-emerald-500/8 blur-3xl animate-[auroraDrift_24s_ease-in-out_infinite_reverse] sm:left-[12%] sm:h-56 sm:w-[22rem]" />
             <div className="absolute inset-x-0 top-16 flex justify-center">
-              <div className="h-40 w-[22rem] bg-gradient-to-r from-purple-500/20 via-transparent to-indigo-500/20 blur-2xl sm:h-52 sm:w-[34rem]" />
+              <div className="h-40 w-[22rem] bg-gradient-to-r from-emerald-500/15 via-transparent to-emerald-400/10 blur-2xl sm:h-52 sm:w-[34rem]" />
             </div>
           </div>
 
           <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
 
           <div className="relative z-20 flex max-w-4xl animate-[fadeIn_700ms_ease-out] flex-col items-center gap-5 px-4 py-24 text-center md:py-32">
-            <p className="text-xs uppercase tracking-[0.34em] text-indigo-300 sm:text-sm sm:tracking-[0.38em]">
-              Bags Ecosystem Platform
+            <p className="text-xs uppercase tracking-[0.34em] text-emerald-400 sm:text-sm sm:tracking-[0.38em]">
+              <span className="text-white">Bags</span> Ecosystem Platform
             </p>
             <div className="relative">
-              <div className="absolute left-1/2 top-1/2 h-24 w-48 -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-500/18 blur-3xl sm:h-32 sm:w-72" />
-              <div className="absolute left-1/2 top-1/2 h-20 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/14 blur-2xl sm:h-24 sm:w-56" />
-              <h1 className="relative max-w-5xl text-4xl font-bold tracking-tight text-white drop-shadow-[0_0_24px_rgba(139,92,246,0.25)] sm:text-5xl lg:text-6xl xl:text-7xl">The Health Layer of the Bags Ecosystem</h1>
+              <div className="absolute left-1/2 top-1/2 h-24 w-48 -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-500/16 blur-3xl sm:h-32 sm:w-72" />
+              <div className="absolute left-1/2 top-1/2 h-20 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-400/10 blur-2xl sm:h-24 sm:w-56" />
+              <h1 className="relative max-w-5xl text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl xl:text-7xl">
+                The Health Layer of the <span className="text-emerald-400">Bags Ecosystem</span>
+              </h1>
             </div>
             <p className="max-w-3xl text-sm leading-7 text-white/60 sm:text-base md:text-lg">
               Real-time visibility into Bags infrastructure, APIs, and system reliability.
             </p>
             <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs text-white/70 backdrop-blur-md transition-colors duration-300 hover:text-white">
-              <span className="h-2 w-2 rounded-full bg-green-400" />
+              <span className="h-2 w-2 rounded-full bg-emerald-400" />
               <span>Powered by Bags API</span>
             </div>
             <Link
               href="/status"
-              className="inline-flex w-full max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-3 text-center text-sm font-medium text-white/90 shadow-[0_0_80px_rgba(139,92,246,0.25)] backdrop-blur-md transition-all duration-300 hover:bg-white/10 sm:w-auto sm:gap-3 sm:px-5"
+              className="inline-flex w-full max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-3 text-center text-sm font-medium text-white/90 shadow-[0_0_40px_rgba(16,185,129,0.08)] backdrop-blur-md transition-all duration-300 hover:bg-white/10 sm:w-auto sm:gap-3 sm:px-5"
             >
               <span className="relative flex h-3 w-3 items-center justify-center">
-                <span className="absolute inline-flex h-3 w-3 rounded-full bg-green-500/20 animate-[statusDot_2s_ease-in-out_infinite]" />
-                <span className="relative h-3 w-3 rounded-full bg-green-400 animate-[statusDot_2s_ease-in-out_infinite]" />
+                <span className="absolute inline-flex h-3 w-3 rounded-full bg-emerald-500/20 animate-[statusDot_2s_ease-in-out_infinite]" />
+                <span className="relative h-3 w-3 rounded-full bg-emerald-400 animate-[statusDot_2s_ease-in-out_infinite]" />
               </span>
               <span>All systems operational</span>
               <span className="hidden text-white/80 sm:inline">|</span>
@@ -269,7 +271,7 @@ export default function HomePage() {
             <BagsStats />
           </div>
 
-          <section className="relative z-20 w-full max-w-5xl rounded-[28px] border border-white/10 bg-white/5 px-4 py-5 shadow-[0_0_80px_rgba(139,92,246,0.25)] backdrop-blur-md sm:rounded-[32px] sm:p-6 md:p-8">
+          <section className="relative z-20 w-full max-w-5xl rounded-[28px] border border-white/10 bg-white/5 px-4 py-5 shadow-[0_0_40px_rgba(16,185,129,0.08)] backdrop-blur-md sm:rounded-[32px] sm:p-6 md:p-8">
             <div className="flex flex-col gap-4 md:gap-6">
               <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                 <div>
@@ -286,16 +288,16 @@ export default function HomePage() {
                 </div>
                 <Link
                   href="/dashboard"
-                  className="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:opacity-90 md:w-auto"
+                  className="inline-flex w-full items-center justify-center rounded-full bg-emerald-500/90 px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-emerald-500 md:w-auto"
                 >
                   Open full dashboard
                 </Link>
               </div>
 
-              <div className="overflow-hidden rounded-[24px] border border-white/10 bg-white/5 p-4 shadow-[0_0_80px_rgba(139,92,246,0.25)] backdrop-blur-md sm:rounded-[28px] sm:p-5">
+              <div className="overflow-hidden rounded-[24px] border border-white/10 bg-white/5 p-4 shadow-[0_0_40px_rgba(16,185,129,0.08)] backdrop-blur-md sm:rounded-[28px] sm:p-5">
                 <div className="flex flex-col gap-4 border-b border-white/10 pb-4 sm:flex-row sm:items-center sm:justify-between">
                   <div>
-                    <p className="text-xs uppercase tracking-[0.28em] text-indigo-300">
+                    <p className="text-xs uppercase tracking-[0.28em] text-emerald-400">
                       Bags Ecosystem Monitor
                     </p>
                     <h3 className="mt-2 text-2xl font-semibold text-white">BagsRadar</h3>
@@ -318,7 +320,7 @@ export default function HomePage() {
                   {services.map((service) => (
                     <div
                       key={service.id}
-                      className="rounded-2xl border border-white/10 bg-white/5 p-4 shadow-[0_1px_0_rgba(255,255,255,0.04)] backdrop-blur-md transition-all duration-300 ease-out hover:scale-[1.02] hover:border-white/10 hover:bg-white/10 hover:brightness-110 hover:shadow-[0_0_80px_rgba(139,92,246,0.25)]"
+                      className="rounded-2xl border border-white/10 bg-white/5 p-4 shadow-[0_1px_0_rgba(255,255,255,0.04)] backdrop-blur-md transition-all duration-300 ease-out hover:scale-[1.02] hover:border-emerald-500/30 hover:bg-white/10 hover:brightness-110 hover:shadow-[0_0_40px_rgba(16,185,129,0.08)]"
                     >
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
@@ -352,10 +354,10 @@ export default function HomePage() {
             {features.map((feature) => (
               <article
                 key={feature.title}
-                className="group relative overflow-hidden rounded-[28px] border border-white/10 bg-white/5 p-6 shadow-[0_0_80px_rgba(139,92,246,0.25)] backdrop-blur-md transition-all duration-300 ease-out hover:scale-[1.02] hover:border-white/10 hover:bg-white/10 hover:brightness-110 hover:shadow-[0_0_80px_rgba(139,92,246,0.25)]"
+                className="group relative overflow-hidden rounded-[28px] border border-white/10 bg-white/5 p-6 shadow-[0_0_40px_rgba(16,185,129,0.08)] backdrop-blur-md transition-all duration-300 ease-out hover:scale-[1.02] hover:border-emerald-500/30 hover:bg-white/10 hover:brightness-110 hover:shadow-[0_0_40px_rgba(16,185,129,0.08)]"
               >
                 <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.08),transparent_45%,transparent)] opacity-70" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(99,102,241,0.12),transparent_40%)] opacity-0 transition duration-300 group-hover:opacity-100" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.12),transparent_40%)] opacity-0 transition duration-300 group-hover:opacity-100" />
                 <div className="relative flex min-h-64 flex-col justify-between">
                   <div>
                     <p className="text-sm uppercase tracking-[0.3em] text-white/60">
@@ -372,7 +374,7 @@ export default function HomePage() {
                   <div className="mt-8">
                     <Link
                       href={feature.href as any}
-                      className="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:opacity-90 sm:w-auto"
+                      className="inline-flex w-full items-center justify-center rounded-full bg-emerald-500/90 px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-emerald-500 sm:w-auto"
                     >
                       {feature.cta}
                     </Link>
@@ -382,7 +384,7 @@ export default function HomePage() {
             ))}
           </section>
 
-          <section className="relative z-20 w-full rounded-[28px] border border-white/10 bg-white/5 p-6 pb-8 shadow-[0_0_80px_rgba(139,92,246,0.25)] backdrop-blur-md md:p-8 md:pb-10">
+          <section className="relative z-20 w-full rounded-[28px] border border-white/10 bg-white/5 p-6 pb-8 shadow-[0_0_40px_rgba(16,185,129,0.08)] backdrop-blur-md md:p-8 md:pb-10">
             <div className="flex flex-col gap-4 md:gap-6">
               <div className="text-center md:text-left">
                 <p className="text-sm uppercase tracking-[0.3em] text-white/60">
@@ -393,10 +395,10 @@ export default function HomePage() {
                 {trustItems.map((item) => (
                   <div
                     key={item.title}
-                    className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-5 text-center shadow-[0_0_80px_rgba(139,92,246,0.25)] backdrop-blur-md transition-all duration-300 ease-out hover:scale-[1.02] hover:border-white/10 hover:bg-white/10 hover:brightness-110 hover:shadow-[0_0_80px_rgba(139,92,246,0.25)] md:text-left"
+                    className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-5 text-center shadow-[0_0_40px_rgba(16,185,129,0.08)] backdrop-blur-md transition-all duration-300 ease-out hover:scale-[1.02] hover:border-emerald-500/30 hover:bg-white/10 hover:brightness-110 hover:shadow-[0_0_40px_rgba(16,185,129,0.08)] md:text-left"
                   >
                     <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.08),transparent_45%,transparent)] opacity-70" />
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(99,102,241,0.12),transparent_40%)] opacity-0 transition duration-300 group-hover:opacity-100" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.12),transparent_40%)] opacity-0 transition duration-300 group-hover:opacity-100" />
                     <div className="relative">
                       <h3 className="text-lg font-semibold text-white">{item.title}</h3>
                       <p className="mt-3 text-sm leading-6 text-white/60">
@@ -410,7 +412,7 @@ export default function HomePage() {
           </section>
         </section>
 
-        <section className="relative z-20 w-full rounded-[28px] border border-white/10 bg-white/5 p-6 shadow-[0_0_80px_rgba(139,92,246,0.25)] backdrop-blur-md md:p-8">
+        <section className="relative z-20 w-full rounded-[28px] border border-white/10 bg-white/5 p-6 shadow-[0_0_40px_rgba(16,185,129,0.08)] backdrop-blur-md md:p-8">
           <div className="flex flex-col gap-4 md:gap-6">
             <div className="text-center md:text-left">
               <p className="text-sm uppercase tracking-[0.3em] text-white/60">Why BagsRadar matters</p>
@@ -419,7 +421,7 @@ export default function HomePage() {
               {whyItems.map((item) => (
                 <div
                   key={item.title}
-                  className="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-[0_0_80px_rgba(139,92,246,0.18)] backdrop-blur-md"
+                  className="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-[0_0_40px_rgba(16,185,129,0.08)] backdrop-blur-md"
                 >
                   <h3 className="text-lg font-semibold text-white">{item.title}</h3>
                   <p className="mt-3 text-sm leading-6 text-white/60">{item.description}</p>
@@ -565,11 +567,3 @@ export default function HomePage() {
     </main>
   );
 }
-
-
-
-
-
-
-
-

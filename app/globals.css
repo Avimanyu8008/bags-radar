@@ -7,16 +7,15 @@
 }
 
 body {
-  @apply text-white antialiased;
-  background-color: #0b0f1a;
-  background-image: linear-gradient(to bottom right, #0b0f1a, #1a0b2e, #3b0764);
+  @apply bg-black text-white antialiased;
+  background-image: linear-gradient(to bottom right, #030712, #020617, #000000);
 }
 
 * {
-  scrollbar-color: #4c1d95 #0b0f1a;
+  scrollbar-color: #065f46 #000000;
 }
 
 .panel {
   @apply rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md;
-  box-shadow: 0 0 80px rgba(139, 92, 246, 0.25);
+  box-shadow: 0 0 40px rgba(16, 185, 129, 0.08);
 }

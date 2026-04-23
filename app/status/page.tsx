@@ -27,7 +27,7 @@ function getBarClass(color: "green" | "yellow" | "red") {
     return "bg-yellow-400";
   }
 
-  return "bg-green-500";
+  return "bg-emerald-500";
 }
 
 function buildUptimeBars(service: ServiceResult, incidents: IncidentRecord[]) {
@@ -125,7 +125,7 @@ export default function StatusPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-[#0b0f1a] via-[#1a0b2e] to-[#3b0764] px-4 py-10 text-white md:px-8">
+    <main className="min-h-screen bg-black px-4 py-10 text-white md:px-8">
       <div className="mx-auto flex max-w-5xl flex-col gap-8">
         <header className="panel flex flex-col gap-5 p-6 md:p-8">
           <div>
@@ -204,7 +204,7 @@ export default function StatusPage() {
           </div>
           <Link
             href="/incidents"
-            className="rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 px-4 py-2 text-sm font-semibold text-white transition hover:opacity-90"
+            className="rounded-full bg-emerald-500/90 px-4 py-2 text-sm font-semibold text-black transition hover:bg-emerald-500"
           >
             Open timeline
           </Link>

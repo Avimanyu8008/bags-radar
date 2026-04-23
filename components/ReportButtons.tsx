@@ -55,7 +55,7 @@ export function ReportButtons() {
               type="button"
               onClick={() => handleReport(button.type)}
               disabled={activeType !== null}
-              className="rounded-2xl bg-gradient-to-r from-purple-500 to-indigo-500 px-4 py-3 text-sm font-medium text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+              className="rounded-2xl bg-emerald-500/90 px-4 py-3 text-sm font-medium text-black transition hover:bg-emerald-500 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {activeType === button.type ? "Sending..." : button.label}
             </button>

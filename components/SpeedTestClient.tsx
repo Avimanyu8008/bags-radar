@@ -49,12 +49,12 @@ export function SpeedTestClient() {
   }, [services]);
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-[#0b0f1a] via-[#1a0b2e] to-[#3b0764] px-4 py-8 text-white md:px-8">
+    <main className="min-h-screen bg-black px-4 py-8 text-white md:px-8">
       <div className="mx-auto flex max-w-6xl flex-col gap-8">
         <header className="panel p-6 md:p-8">
           <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="text-sm uppercase tracking-[0.35em] text-indigo-300">
+              <p className="text-sm uppercase tracking-[0.35em] text-emerald-400">
                 BagsRadar Labs
               </p>
               <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white/90">
@@ -70,13 +70,13 @@ export function SpeedTestClient() {
                 type="button"
                 onClick={runSpeedTest}
                 disabled={running}
-                className="rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-70"
+                className="rounded-full bg-emerald-500/90 px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-emerald-500 disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {running ? "Running..." : "Run speed test"}
               </button>
               <Link
                 href="/"
-                className="rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white/90 backdrop-blur-md transition hover:bg-white/10"
+                className="rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white/90 backdrop-blur-md transition hover:border-emerald-500/30 hover:bg-white/10"
               >
                 Back to dashboard
               </Link>
@@ -107,8 +107,8 @@ export function SpeedTestClient() {
               </div>
             ))}
 
-            <div className="rounded-2xl border border-white/10 bg-gradient-to-r from-purple-500/20 to-indigo-500/20 p-4 backdrop-blur-md">
-              <p className="text-sm text-white/60">Average latency</p>
+            <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/10 p-4 backdrop-blur-md">
+              <p className="text-sm text-emerald-300">Average latency</p>
               <p className="mt-2 text-2xl font-semibold text-white/90">
                 {averageLatency !== null ? `${averageLatency}ms` : "N/A"}
               </p>
