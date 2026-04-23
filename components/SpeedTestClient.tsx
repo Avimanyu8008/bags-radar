@@ -108,7 +108,7 @@ export function SpeedTestClient() {
             ))}
 
             <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/10 p-4 backdrop-blur-md">
-              <p className="text-sm text-emerald-300">Average latency</p>
+              <p className="text-sm text-emerald-400">Average latency</p>
               <p className="mt-2 text-2xl font-semibold text-white/90">
                 {averageLatency !== null ? `${averageLatency}ms` : "N/A"}
               </p>
@@ -119,3 +119,4 @@ export function SpeedTestClient() {
     </main>
   );
 }
+

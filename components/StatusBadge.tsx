@@ -4,7 +4,7 @@ import clsx from "clsx";
 import type { ServiceStatus } from "@/data/services";
 
 const badgeStyles: Record<ServiceStatus, string> = {
-  UP: "bg-green-500/10 text-green-400 ring-green-500/20",
+  UP: "bg-emerald-500/10 text-emerald-400 ring-emerald-500/20",
   SLOW: "bg-yellow-400/10 text-yellow-400 ring-yellow-400/20",
   DOWN: "bg-red-400/10 text-red-400 ring-red-400/20"
 };
@@ -22,3 +22,4 @@ export function StatusBadge({ status }: { status: ServiceStatus }) {
     </span>
   );
 }
+

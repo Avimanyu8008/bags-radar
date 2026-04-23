@@ -26,7 +26,7 @@ export default async function IncidentsPage() {
             <div className="flex gap-3">
               <Link
                 href="/"
-                className="rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white/90 backdrop-blur-md transition hover:border-emerald-500/30 hover:bg-white/10"
+                className="rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white/90 backdrop-blur-md transition hover:border-emerald-500/30 hover:border-emerald-500/30 hover:bg-white/10"
               >
                 Dashboard
               </Link>
@@ -88,3 +88,4 @@ export default async function IncidentsPage() {
     </main>
   );
 }
+

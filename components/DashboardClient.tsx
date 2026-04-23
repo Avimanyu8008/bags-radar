@@ -163,7 +163,7 @@ export function DashboardClient() {
                 </Link>
                 <Link
                   href="/incidents"
-                  className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white/90 backdrop-blur-md transition hover:border-emerald-500/30 hover:bg-white/10"
+                  className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white/90 backdrop-blur-md transition hover:border-emerald-500/30 hover:border-emerald-500/30 hover:bg-white/10"
                 >
                   View incidents
                 </Link>
@@ -207,3 +207,4 @@ export function DashboardClient() {
     </main>
   );
 }
+

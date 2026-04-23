@@ -95,3 +95,4 @@ export function LatencyChart({ history }: { history: LatencyPoint[] }) {
     </div>
   );
 }
+
